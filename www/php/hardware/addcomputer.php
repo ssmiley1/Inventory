@@ -18,23 +18,23 @@
 </div>
 	<div class="modal-body">
 
-	<form id="userForm" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" class="form-horizontal">
+	<form id="addForm" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" class="form-horizontal">
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Make</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="Make"/>
+				<input type="text" class="form-control required" id="Make" name="Make"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Model</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="Model" />
+				<input type="text" class="form-control" id="Model" name="Model" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Serial Number</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="SerialNumber" />
+				<input type="text" class="form-control" id="SerialNumber" name="SerialNumber" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -50,7 +50,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Asset Tag</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="AssetTag" />
+				<input type="text" class="form-control" id="AssetTag" name="AssetTag" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -108,22 +108,44 @@
 		</div>
 	</form>
 	
-<?php
+<script type="text/javascript">
+  $('#addForm').on('submit', function(e) {
+    var make = $('#Make');
+    var model = $('#Model');
+    var serial = $('#SerialNumber');
+    var asset = $('#AssetTag');
 
-	if (isset($_POST['AssetTag'])){
-		$AssetTag = $_POST['AssetTag'];
-	
-		foreach($allcomputerexisting as $check){
-			if ($check['AssetTag'] == $AssetTag){
-				$exists = 1;
-				break;
-			}
-		}
-		
-		if ($exists == 1){
-			print $AssetTag." exists.";
-		} else {
-			print $AssetTag." does not exist.";
-		}
-	}
-?>
+    // Check if there is an entered value
+    if(!make.val()) {
+		make.closest('.form-group').removeClass('has-success').addClass('has-error');
+		var error = 1;
+    } else {
+    	make.closest('.form-group').removeClass('has-error').addClass('has-success');
+    }
+    if(!model.val()) {
+    	model.closest('.form-group').removeClass('has-success').addClass('has-error');
+		var error = 1;
+    } else {
+    	model.closest('.form-group').removeClass('has-error').addClass('has-success');
+    }
+    if(!serial.val()) {
+    	serial.closest('.form-group').removeClass('has-success').addClass('has-error');
+		var error = 1;
+    } else {
+    	serial.closest('.form-group').removeClass('has-error').addClass('has-success');
+    }
+    if(!asset.val()) {
+    	asset.closest('.form-group').removeClass('has-success').addClass('has-error');
+		var error = 1;
+    } else {
+    	asset.closest('.form-group').removeClass('has-error').addClass('has-success');
+    }
+    
+    
+    
+    if(error==1){
+    	// Stop submission of the form
+      e.preventDefault();
+    }
+  });
+</script>
