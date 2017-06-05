@@ -11,7 +11,7 @@
     	
    	 	<!-- Bootstrap core CSS -->
     	<link href="/www/css/bootstrap.min.css" rel="stylesheet">
-    	<link href="/www/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    	<!-- <link href="/www/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
     	<link href="/www/css/navbar-fixed-top.css" rel="stylesheet">
 	</head>
 	
@@ -96,8 +96,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
     <script src="/www/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/www/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug
+    <script src="/www/js/ie10-viewport-bug-workaround.js"></script> -->
     
     <div class="modal fade" id="addmodal">
 		<div class="modal-dialog" role="document">

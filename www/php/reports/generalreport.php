@@ -13,7 +13,7 @@
 
    	 	<!-- Bootstrap core CSS -->
     	<link href="/www/css/bootstrap.min.css" rel="stylesheet">
-    	<link href="/www/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    	<!-- <link href="/www/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
     
 	</head>
 <body>
