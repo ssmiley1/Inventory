@@ -7,7 +7,7 @@
 	  echo $db->lastErrorMsg();
 	} else {
 
-	$allcomputerexisting = $db->query("SELECT AssetTag,SerialNumber FROM computers");
+	$allcomputerexisting = $db->query("SELECT AssetTag,SerialNumber FROM computers ORDER BY 'AssetTag' DESC");
 	
 	}
 ?>
@@ -98,7 +98,18 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Notes</label>
 			<div class="col-xs-5">
-				<textarea class="form-control" rows="5" id="Notes" style="resize:none"></textarea>
+				<textarea class="form-control" rows="5" id="Notes" style="resize:none">
+				<?php
+					foreach($allcomputerexisting as $computer){
+						if($computer['AssetTag'] != ""){
+							echo $computer['AssetTag']."\n";
+						} else {
+							echo "None\n";
+						}
+					}
+				
+				?>
+				</textarea>
 			</div>
 		</div>
 		<div class="form-group">
@@ -117,28 +128,28 @@
 
     // Check if there is an entered value
     if(!make.val()) {
-		make.closest('.form-group').removeClass('has-success').addClass('has-error');
+		make.closest('.form-group').addClass('has-error');
 		var error = 1;
     } else {
-    	make.closest('.form-group').removeClass('has-error').addClass('has-success');
+    	make.closest('.form-group').removeClass('has-error');
     }
     if(!model.val()) {
-    	model.closest('.form-group').removeClass('has-success').addClass('has-error');
+    	model.closest('.form-group').addClass('has-error');
 		var error = 1;
     } else {
-    	model.closest('.form-group').removeClass('has-error').addClass('has-success');
+    	model.closest('.form-group').removeClass('has-error');
     }
     if(!serial.val()) {
-    	serial.closest('.form-group').removeClass('has-success').addClass('has-error');
+    	serial.closest('.form-group').addClass('has-error');
 		var error = 1;
     } else {
-    	serial.closest('.form-group').removeClass('has-error').addClass('has-success');
+    	serial.closest('.form-group').removeClass('has-error');
     }
     if(!asset.val()) {
-    	asset.closest('.form-group').removeClass('has-success').addClass('has-error');
+    	asset.closest('.form-group').addClass('has-error');
 		var error = 1;
     } else {
-    	asset.closest('.form-group').removeClass('has-error').addClass('has-success');
+    	asset.closest('.form-group').removeClass('has-error');
     }
     
     
@@ -146,6 +157,8 @@
     if(error==1){
     	// Stop submission of the form
       e.preventDefault();
+    } else {
+    	window.location = "index.php?page=hardware/allcomputers";
     }
   });
 </script>
