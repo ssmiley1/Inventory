@@ -8,21 +8,7 @@
     	<meta name="description" content="">
     	<meta name="author" content="">
     	<link rel="icon" href="../../favicon.ico">
-<!--
-		<link href="/www/DataTables/media/css/jquery.dataTables.min.css" rel="stylesheet">
-		<link href="/www/DataTables/media/css/dataTables.bootstrap4.css" rel="stylesheet">
-		
-		<script type="text/javascript" charset="utf8" src="/www/DataTables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
-		<script type="text/javascript" charset="utf8" src="/www/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js"></script>
-		
-		<link href="/www/DataTables/extensions/Buttons/css/buttons.bootstrap4.css" rel="stylesheet">
-		<script type="text/javascript" charset="utf8" src="/www/DataTables/media/js/jquery.dataTables.js"></script>
-		
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-colvis-1.3.1/b-html5-1.3.1/b-print-1.3.1/fc-3.2.2/fh-3.1.2/sc-1.4.2/datatables.min.css"/>
-		<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-colvis-1.3.1/b-html5-1.3.1/b-print-1.3.1/fc-3.2.2/fh-3.1.2/sc-1.4.2/datatables.min.js"></script>	
-		
-		"dom": 'Bfrtip', 
--->
+
 		<script type="text/javascript" charset="utf8" src="/www/DataTables/media/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript" charset="utf8" src="/www/DataTables/media/js/dataTables.bootstrap.min.js"></script>
 		<script type="text/javascript" charset="utf8" src="/www/DataTables/extensions/Buttons/js/dataTables.buttons.min.js"></script>

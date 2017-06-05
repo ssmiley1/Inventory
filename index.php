@@ -1,6 +1,7 @@
 <html>
 <head><title>Inventory</title>
-<script type="text/javascript" charset="utf8" src="/www/js/jquery.js"></script>
+<script type="text/javascript" src="/www/js/jquery.js"></script>
+<script type="text/javascript" src="/www/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -20,6 +21,14 @@ $page = 'www/php/reports/generalreport.php'; // default page
 <div id="mainwindow">
 <?php include($page); ?>
 </div>
+
+<div class="modal fade" id="addmodal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+		</div>
+	</div>
+</div>
+
 </body>
 
 </html>

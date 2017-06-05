@@ -1,5 +1,7 @@
 <link href="/www/css/bootstrap.min.css" rel="stylesheet">
 
+<script type="text/javascript" src="/www/js/jquery-validation/dist/jquery.validate.min.js"></script>
+
 <?php
 	$db = new PDO('sqlite:../../../db/Inventory.db');
 	
@@ -7,8 +9,9 @@
 	  echo $db->lastErrorMsg();
 	} else {
 
-	$allcomputerexisting = $db->query("SELECT AssetTag,SerialNumber FROM computers ORDER BY 'AssetTag' DESC");
-	
+	$allcomputerexisting = $db->query("SELECT AssetTag,SerialNumber FROM computers ORDER BY 'AssetTag' ASC");
+	$allcomputerassettags = $db->query("SELECT AssetTag FROM computers ORDER BY 'AssetTag' ASC");
+
 	}
 ?>
 
@@ -18,11 +21,11 @@
 </div>
 	<div class="modal-body">
 
-	<form id="addForm" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" class="form-horizontal">
+	<form id="addForm" action="index.php?page=hardware/allcomputers" method="post" class="form-horizontal">
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Make</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control required" id="Make" name="Make"/>
+				<input type="text" class="form-control" autofocus id="Make" name="Make" required/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -50,7 +53,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Asset Tag</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="AssetTag" name="AssetTag" />
+				<input type="text" class="form-control required" id="AssetTag" name="AssetTag" required/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -98,18 +101,13 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Notes</label>
 			<div class="col-xs-5">
-				<textarea class="form-control" rows="5" id="Notes" style="resize:none">
-				<?php
-					foreach($allcomputerexisting as $computer){
-						if($computer['AssetTag'] != ""){
+				<textarea class="form-control" id="Notes" style="resize:none"><?php
+					foreach($allcomputerassettags as $computer){
+						if(($computer['AssetTag'] != "") or ($computer['AssetTag'] != NULL) or ($computer['AssetTag'] != 'None')){
 							echo $computer['AssetTag']."\n";
-						} else {
-							echo "None\n";
 						}
 					}
-				
-				?>
-				</textarea>
+				?></textarea>
 			</div>
 		</div>
 		<div class="form-group">
@@ -119,46 +117,30 @@
 		</div>
 	</form>
 	
+	
 <script type="text/javascript">
-  $('#addForm').on('submit', function(e) {
-    var make = $('#Make');
-    var model = $('#Model');
-    var serial = $('#SerialNumber');
-    var asset = $('#AssetTag');
 
-    // Check if there is an entered value
-    if(!make.val()) {
-		make.closest('.form-group').addClass('has-error');
-		var error = 1;
-    } else {
-    	make.closest('.form-group').removeClass('has-error');
-    }
-    if(!model.val()) {
-    	model.closest('.form-group').addClass('has-error');
-		var error = 1;
-    } else {
-    	model.closest('.form-group').removeClass('has-error');
-    }
-    if(!serial.val()) {
-    	serial.closest('.form-group').addClass('has-error');
-		var error = 1;
-    } else {
-    	serial.closest('.form-group').removeClass('has-error');
-    }
-    if(!asset.val()) {
-    	asset.closest('.form-group').addClass('has-error');
-		var error = 1;
-    } else {
-    	asset.closest('.form-group').removeClass('has-error');
-    }
-    
-    
-    
-    if(error==1){
-    	// Stop submission of the form
-      e.preventDefault();
-    } else {
-    	window.location = "index.php?page=hardware/allcomputers";
-    }
+  $("#addForm").validate( {
+  	rules: {
+  		AssetTag: {
+  			required: true,
+  			remote: {
+  				url: "/resources/process/existingassets.php",
+  			}
+  		}
+  	}
+  	message: {
+  		AssetTag: {
+  			required: "Asset Tag is required.",
+  			remote: "remote error."
+  		}
+  	}
   });
+  
+  
+
+
+
+
+	
 </script>
