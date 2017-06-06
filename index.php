@@ -29,6 +29,12 @@ $page = 'www/php/reports/generalreport.php'; // default page
 	</div>
 </div>
 
+<script>
+	$("#addmodal").on('hidden.bs.modal', function () {
+    	$(this).data('bs.modal', null);
+	});
+</script>
+
 </body>
 
 </html>

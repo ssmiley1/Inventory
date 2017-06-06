@@ -4,11 +4,11 @@
 
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-<h4 class="modal-title">Add New Computer</h4>
+<h4 class="modal-title">Add New Mobile Device</h4>
 </div>
 	<div class="modal-body">
 
-	<form id="addForm" action="index.php?page=hardware/allcomputers" method="post" class="form-horizontal">
+	<form id="addForm" action="index.php?page=hardware/allmobile" method="post" class="form-horizontal">
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Make">Make</label>
 			<div class="col-xs-5">
@@ -22,49 +22,58 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-xs-3 control-label">Asset Tag</label>
+			<div class="col-xs-5">
+				<input type="text" class="form-control required" id="AssetTag" name="AssetTag">
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="col-xs-3 control-label" for="SerialNumber">Serial Number</label>
 			<div class="col-xs-5">
 				<input type="text" class="form-control" id="SerialNumber" name="SerialNumber" required>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-xs-3 control-label" for="Type">Type</label>
+			<label class="col-xs-3 control-label">IMEI</label>
+			<div class="col-xs-5">
+				<input type="text" class="form-control required" id="IMEI" name="IMEI">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-3 control-label">ICCID</label>
+			<div class="col-xs-5">
+				<input type="text" class="form-control required" id="ICCID" name="ICCID">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-3 control-label" for="Carrier">Carrier</label>
 			<div class="col-xs-5">
 				<select class="form-control">
-				<option selected>Choose Type...</option>
-				<option>Desktop</option>
-				<option>Laptop</option>
+				<option selected>Choose Carrier...</option>
+				<option>ATT</option>
+				<option>Verizon</option>
+				<option>Truphone</option>
+				<option>Vodafone</option>
+				<option>Rogers</option>
 				</select>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-xs-3 control-label">Asset Tag</label>
+			<label class="col-xs-3 control-label">Phone Number</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control required" id="AssetTag" name="AssetTag" required>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">Ethernet MAC</label>
-			<div class="col-xs-5">
-				<input type="text" class="form-control" name="EthernetMAC" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">WiFi MAC</label>
-			<div class="col-xs-5">
-				<input type="text" class="form-control" name="WiFiMAC" />
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-xs-3 control-label">Purchase Price</label>
-			<div class="col-xs-5">
-				<input type="text" class="form-control" name="PurchasePrice" />
+				<input type="text" class="form-control" name="PhoneNumber" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Purchase Date</label>
 			<div class="col-xs-5">
 				<input type="text" class="form-control" name="PurchaseDate" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-xs-3 control-label">Purchase Price</label>
+			<div class="col-xs-5">
+				<input type="text" class="form-control" name="PurchasePrice" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -79,9 +88,10 @@
 				<select class="form-control">
 				<option selected>Choose Status...</option>
 				<option>Available</option>
-				<option>New in box</option>
+				<option>Locked</option>
+				<option>Suspended</option>
 				<option>Damaged</option>
-				<option>To recycle</option>
+				<option>Lost/Stolen</option>
 				</select>
 			</div>
 		</div>
@@ -125,21 +135,6 @@
   	errorElement: 'span',
 	errorClass: 'help-block',
   	rules: {
-  		AssetTag: {
-  			required: true,
-  			digits: true,
-  			min: 4,
-  			remote: {
-  				url: "/resources/process/validate.php",
-  				type: "post",
-  				data: {
-  					AssetTag: function() {
-  						return $("#AssetTag").val();
-  					},
-  					Table: "computers"
-  				}
-  			}
-  		},
   		SerialNumber: {
   			required: true,
   			remote: {
@@ -149,7 +144,7 @@
   					SerialNumber: function() {
   						return $("#SerialNumber").val();
   					},
-  					Table: "computers"
+  					Table: "mobile"
   				}
   			}
   		}
