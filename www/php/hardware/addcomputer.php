@@ -23,25 +23,25 @@
 
 	<form id="addForm" action="index.php?page=hardware/allcomputers" method="post" class="form-horizontal">
 		<div class="form-group">
-			<label class="col-xs-3 control-label">Make</label>
+			<label class="col-xs-3 control-label" for="Make">Make</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" autofocus id="Make" name="Make"/>
+				<input type="text" class="form-control" autofocus id="Make" name="Make" required>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-xs-3 control-label">Model</label>
+			<label class="col-xs-3 control-label" for="Model">Model</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="Model" name="Model" />
+				<input type="text" class="form-control" id="Model" name="Model" required>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-xs-3 control-label">Serial Number</label>
+			<label class="col-xs-3 control-label" for="SerialNumber">Serial Number</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="SerialNumber" name="SerialNumber" />
+				<input type="text" class="form-control" id="SerialNumber" name="SerialNumber" required>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-xs-3 control-label">Type</label>
+			<label class="col-xs-3 control-label" for="Type">Type</label>
 			<div class="col-xs-5">
 				<select class="form-control">
 				<option selected>Choose Type...</option>
@@ -53,7 +53,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Asset Tag</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control required" id="AssetTag" name="AssetTag" required/>
+				<input type="text" class="form-control required" id="AssetTag" name="AssetTag" required>
 			</div>
 		</div>
 		<div class="form-group">
@@ -101,13 +101,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Notes</label>
 			<div class="col-xs-5">
-				<textarea class="form-control" id="Notes" style="resize:none"><?php
-					foreach($allcomputerassettags as $computer){
-						if(($computer['AssetTag'] != "") or ($computer['AssetTag'] != NULL) or ($computer['AssetTag'] != 'None')){
-							echo $computer['AssetTag']."\n";
-						}
-					}
-				?></textarea>
+				<textarea class="form-control" id="Notes" style="resize:none"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
@@ -120,18 +114,96 @@
 	
 <script type="text/javascript">
 
+	$.validator.setDefaults({
+		highlight: function(element) {
+
+			$(element).closest('.form-group').addClass('has-error');
+
+		},
+		unhighlight: function(element) {
+
+			$(element).closest('.form-group').removeClass('has-error');
+
+		},
+		errorPlacement: function(error, element) {
+			if(element.parent('.input-group').length) {
+				error.insertAfter(element.parent());
+			} else {
+				error.insertAfter(element);
+			}
+		}
+	});
+
   $("#addForm").validate({
-  	debug: true,
+  	errorElement: 'span',
+	errorClass: 'help-block',
   	rules: {
-  		name: "required",
+  		AssetTag: {
+  			required: true,
+  			digits: true,
+  			min: 4,
+  			remote: {
+  				url: "/resources/process/validate.php",
+  				type: "post",
+  				data: {
+  					AssetTag: function() {
+  						return $("#AssetTag").val();
+  					}
+  				}
+  			}
+  		},
+  		SerialNumber: {
+  			required: true,
+  			remote: {
+  				url: "/resources/process/validate.php",
+  				type: "post",
+  				data: {
+  					SerialNumber: function() {
+  						return $("#SerialNumber").val();
+  					}
+  				}
+  			}
+  		}
   	},
   	messages: {
-  		name: "Please enter.",
+  		Make: {
+  			required: "Make is required."
+  		},
+  		Model: {
+  			required: "Model is required."
+  		},
   		AssetTag: {
-  			required: "this.",
+  			required: "Asset tag required.",
+  			digits: "Please enter digits only.",
+  			min: "Asset tag must be more than 4 digits.",
+  			remote: "Asset tag already exists."
+  		},
+  		SerialNumber: {
+  			required: "Serial number required.",
+  			remote: "Serial number already exists."
   		}
   	}
   });
+  
+  $(".modal").on("hidden.bs.modal", function(){
+    	$( "#addForm" ).validate().resetForm();
+    	$( "#addForm" )[0].reset();
+    	$( "#addForm" ).find('.has-error').removeClass("has-error");
+        $( "#addForm" ).find('.has-success').removeClass("has-success");
+        $( "#addForm" ).find('.form-control-feedback').remove()
 
+	});
 	
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
