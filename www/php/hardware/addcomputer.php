@@ -25,7 +25,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Make</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" autofocus id="Make" name="Make" required/>
+				<input type="text" class="form-control" autofocus id="Make" name="Make"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -120,27 +120,18 @@
 	
 <script type="text/javascript">
 
-  $("#addForm").validate( {
+  $("#addForm").validate({
+  	debug: true,
   	rules: {
+  		name: "required",
+  	},
+  	messages: {
+  		name: "Please enter.",
   		AssetTag: {
-  			required: true,
-  			remote: {
-  				url: "/resources/process/existingassets.php",
-  			}
-  		}
-  	}
-  	message: {
-  		AssetTag: {
-  			required: "Asset Tag is required.",
-  			remote: "remote error."
+  			required: "this.",
   		}
   	}
   });
-  
-  
-
-
-
 
 	
 </script>
