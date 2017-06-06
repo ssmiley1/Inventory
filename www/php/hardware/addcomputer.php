@@ -12,20 +12,24 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Make">Make</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" autofocus id="Make" name="Make" required>
+				<input type="text" class="form-control" autofocus id="Make" name="Make" required/>
+				<span>HI</span>
 			</div>
+			<div class="col-xs-5" id="messageContainer"></div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Model">Model</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="Model" name="Model" required>
+				<input type="text" class="form-control" id="Model" name="Model" required/>
 			</div>
+			<div class="col-xs-5 messageContainer"></div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="SerialNumber">Serial Number</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="SerialNumber" name="SerialNumber" required>
+				<input type="text" class="form-control" id="SerialNumber" name="SerialNumber" required/>
 			</div>
+			<div class="col-xs-5 messageContainer"></div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Type">Type</label>
@@ -40,7 +44,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Asset Tag</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control required" id="AssetTag" name="AssetTag" required>
+				<input type="text" class="form-control required" id="AssetTag" name="AssetTag" required/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -103,27 +107,24 @@
 
 	$.validator.setDefaults({
 		highlight: function(element) {
-
 			$(element).closest('.form-group').addClass('has-error');
-
 		},
 		unhighlight: function(element) {
-
 			$(element).closest('.form-group').removeClass('has-error');
-
 		},
-		errorPlacement: function(error, element) {
-			if(element.parent('.input-group').length) {
-				error.insertAfter(element.parent());
-			} else {
-				error.insertAfter(element);
-			}
-		}
 	});
 
   $("#addForm").validate({
-  	errorElement: 'span',
+  	errorElement: 'div',
 	errorClass: 'help-block',
+	errorPlacement: function(error, element) {
+            error.insertAfter(element); // <-- this is the default
+    },
+	err: {
+		container: function($field, validator) {
+			return $field.parent().next('.messageContainer');
+		}
+	},
   	rules: {
   		AssetTag: {
   			required: true,
