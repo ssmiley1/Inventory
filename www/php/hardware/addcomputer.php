@@ -13,23 +13,19 @@
 			<label class="col-xs-3 control-label" for="Make">Make</label>
 			<div class="col-xs-5">
 				<input type="text" class="form-control" autofocus id="Make" name="Make" required/>
-				<span>HI</span>
-			</div>
-			<div class="col-xs-5" id="messageContainer"></div>
+			</div> 
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Model">Model</label>
 			<div class="col-xs-5">
 				<input type="text" class="form-control" id="Model" name="Model" required/>
 			</div>
-			<div class="col-xs-5 messageContainer"></div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="SerialNumber">Serial Number</label>
 			<div class="col-xs-5">
 				<input type="text" class="form-control" id="SerialNumber" name="SerialNumber" required/>
 			</div>
-			<div class="col-xs-5 messageContainer"></div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Type">Type</label>
@@ -115,10 +111,10 @@
 	});
 
   $("#addForm").validate({
-  	errorElement: 'div',
+  	errorElement: 'span',
 	errorClass: 'help-block',
 	errorPlacement: function(error, element) {
-            error.insertAfter(element); // <-- this is the default
+            error.insertAfter(element.parent());
     },
 	err: {
 		container: function($field, validator) {
@@ -129,7 +125,7 @@
   		AssetTag: {
   			required: true,
   			digits: true,
-  			min: 4,
+  			minlength: 4,
   			remote: {
   				url: "/resources/process/validate.php",
   				type: "post",
@@ -157,20 +153,20 @@
   	},
   	messages: {
   		Make: {
-  			required: "Make is required."
+  			required: "Make required."
   		},
   		Model: {
-  			required: "Model is required."
+  			required: "Model required."
   		},
   		AssetTag: {
-  			required: "Asset tag required.",
-  			digits: "Please enter digits only.",
-  			min: "Asset tag must be more than 4 digits.",
-  			remote: "Asset tag already exists."
+  			required: "Asset Tag required.",
+  			digits: "Requires digits only.",
+  			minlength: "4 digits minimun.",
+  			remote: "Already exists."
   		},
   		SerialNumber: {
-  			required: "Serial number required.",
-  			remote: "Serial number already exists."
+  			required: "Serial Number required.",
+  			remote: "Already exists."
   		}
   	}
   });
