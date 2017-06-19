@@ -41,8 +41,8 @@
                 <li><a href="index.php?page=users/allfieldusers">All Field Users</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Add User</li>
-                <li><a href="#">Add HE User</a></li>
-                <li><a href="#">Add Field User</a></li>
+                <li><a href="/www/php/users/addheuser.php" data-target="#modal">Add HE User</a></li>
+                <li><a href="/www/php/users/addfielduser.php" data-target="#modal">Add Field User</a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -55,9 +55,9 @@
                 <li><a href="index.php?page=hardware/allxerox" id="allxerox">All XEROX</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Add Hardware</li>
-                <li><a data-toggle="modal" href="/www/php/hardware/addcomputer.php" data-target="#addmodal">Add Computer</a></li>
-                <li><a data-toggle="modal" href="/www/php/hardware/addmobile.php" data-target="#addmodal">Add Mobile</a></li>
-                <li><a data-toggle="modal" href="/www/php/hardware/addaccessory.php" data-target="#addmodal">Add Accessory</a></li>
+                <li><a data-toggle="modal" href="/www/php/hardware/addcomputer.php" data-target="#modal">Add Computer</a></li>
+                <li><a data-toggle="modal" href="/www/php/hardware/addmobile.php" data-target="#modal">Add Mobile</a></li>
+                <li><a data-toggle="modal" href="/www/php/hardware/addaccessory.php" data-target="#modal">Add Accessory</a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -72,7 +72,6 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Reports <span class="caret"></span></a>
               <ul class="dropdown-menu">
-              	<li role="separator" class="divider"></li>
                 <li class="dropdown-header">User Reports</li>
                 <li><a href="#">HE User Report</a></li>
                 <li><a href="#">Field User Report</a></li>

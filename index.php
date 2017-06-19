@@ -22,7 +22,7 @@ $page = 'www/php/reports/generalreport.php'; // default page
 <?php include($page); ?>
 </div>
 
-<div class="modal fade" id="addmodal">
+<div class="modal fade" id="modal">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 		</div>
@@ -30,7 +30,7 @@ $page = 'www/php/reports/generalreport.php'; // default page
 </div>
 
 <script>
-	$("#addmodal").on('hidden.bs.modal', function () {
+	$("#modal").on('hidden.bs.modal', function () {
     	$(this).data('bs.modal', null);
 	});
 </script>
