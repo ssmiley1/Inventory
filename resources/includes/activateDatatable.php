@@ -27,7 +27,7 @@
 		
 		<script>
 		$(document).ready(function(){
-    		var table = $('#allcomputers').DataTable( {
+    		var table = $('#datatable').DataTable( {
     			"serverside": false,
 				"compact": true,
 				"paging": false,
@@ -35,7 +35,7 @@
 				"sScrollY": "600px",
 				"scrollX": true,
 				"bScrollCollapse": true, 
-				"order": [[ 0, "asc" ], [ 1, "asc" ]],
+				"order": [[ 1, "asc" ], [ 2, "asc" ]],
 				"dom": "<'row'<'col-sm-6 text-left'Bl><'col-sm-6 text-left'f><'col-sm-3'>>" +
     					"<'row'<'col-sm-12'tr>>" +
     					"<'row'<'col-sm-5'i><'col-sm-7'p>>",

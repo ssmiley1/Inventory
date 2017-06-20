@@ -3,9 +3,10 @@
 <body>
 <div class="container-fluid">
 		<h3>All Computers</h3>
-		<table id="allcomputers" class="table table-sm table-bordered table-striped table-hover display nowrap" width="100%" style="font-size:15px">
-			<thead class="thead-default">
+		<table id="datatable" class="table table-sm table-bordered table-striped table-hover display nowrap" width="100%" style="font-size:15px">
+			<thead>
 				<tr>
+					<th>Edit</th>
 					<th>Make</th>
 					<th>Model</th>
 					<th>Serial Number</th>
@@ -31,7 +32,12 @@
 
 				foreach($allcomputers as $row)
 				{
-					print "<tr>";		
+					print "<tr>";
+					print "<td>";
+					print "<form action='www/php/hardware/editcomputer.php' method='POST' style='padding:0; margin:0'>";
+					print "<a data-toggle='modal' href='www/php/hardware/editcomputer.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-edit'></span></a>";
+					print "</form>";
+					print "</td>";
 					print "<td>".$row['Make']."</td>";
 					print "<td>".$row['Model']."</td>";
 					print "<td>".$row['SerialNumber']."</td>";
@@ -74,5 +80,19 @@
 			</tbody>
 		</table>
 </div>
+
+<div class="modal fade" id="editmodal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+		</div>
+	</div>
+</div>
+
+<script>
+	$("#editmodal").on('hidden.bs.modal', function () {
+    	$(this).data('bs.modal', null);
+	});
+</script>
+
 </body>
 </html>

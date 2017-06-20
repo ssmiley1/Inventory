@@ -133,7 +133,7 @@ if( isset($_POST['DeleteMobile']) ) {
 	$MobileToDelete = $_POST['DeleteMobile'];
 	$db->exec("DELETE FROM mobile WHERE ID = '$MobileToDelete'");
 
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=hardware/allmobile");
 	$db = NULL;
 	
 }
@@ -161,7 +161,7 @@ if( isset($_POST['AddMobile']) ) {
 
 	$db->exec("INSERT INTO mobile (Make, Model, SerialNumber, IMEI, ICCID, Carrier, PhoneNumber, PurchaseDate, PurchasePrice, AssignedTo, Status, Notes) VALUES ('$Make', '$Model', '$SerialNumber', '$IMEI', '$ICCID', '$Carrier', '$PhoneNumber', '$PurchaseDate', '$PurchasePrice', '$AssignedTo', '$Status', '$Notes');");
 	
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=hardware/allmobile");
 	$db = NULL;
 
 }
@@ -204,7 +204,7 @@ if( isset($_POST['UpdateMobile']) ) {
 	
 	$db->exec("UPDATE OR REPLACE mobile SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', IMEI = '$IMEI', ICCID = '$ICCID', PhoneNumber = '$PhoneNumber', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice' WHERE ID = '$ID'");
 	
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=hardware/allmobile");
 	$db = NULL;
 	
 }
@@ -214,7 +214,7 @@ if( isset($_POST['DeleteComputer']) ) {
 	$ComputerToDelete = $_POST['DeleteComputer'];
 	$db->exec("Delete FROM computers WHERE ID = '$ComputerToDelete'");
 	
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=hardware/allcomputers");
 	$db = NULL;
 }
 
@@ -241,7 +241,7 @@ if( isset($_POST['AddComputer']) ) {
 
 	$db->exec("INSERT INTO computers (Make, Model, SerialNumber, Type, AssetTag, EthernetMAC, WiFiMAC, PurchaseDate, PurchasePrice, AssignedTo, Status, Notes) VALUES ('$Make', '$Model', '$SerialNumber', '$Type', '$AssetTag', '$EthernetMAC', '$WiFiMAC', '$PurchaseDate', '$PurchasePrice', '$AssignedTo', '$Status', '$Notes');");
 		
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=hardware/allcomputers");
 	$db = NULL;
 	
 }
@@ -278,7 +278,7 @@ if( isset($_POST['UpdateComputer']) ) {
 	
 	$db->exec("UPDATE OR REPLACE computers SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', EthernetMAC = '$EthernetMAC', WiFiMAC = '$WiFiMAC', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Notes = '$Notes' WHERE ID = '$ID'");
 	
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=hardware/allcomputers");
 	$db = NULL;
 	
 }

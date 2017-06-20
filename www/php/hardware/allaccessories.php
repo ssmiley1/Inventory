@@ -3,7 +3,7 @@
 <body>
 <div class="container-fluid">
 		<h3>All Accessories</h3>
-		<table id="allcomputers" class="table table-sm table-bordered table-striped table-hover display nowrap" width="100%" style="font-size:15px">
+		<table id="datatable" class="table table-sm table-bordered table-striped table-hover display nowrap" width="100%" style="font-size:15px">
 			<thead class="thead-default">
 				<tr>
 					<th>Edit</th>
