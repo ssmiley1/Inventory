@@ -34,7 +34,7 @@
 					print "<tr>";
 					print "<td>";
 					print "<form action='www/php/hardware/editaccessory.php' method='POST' style='padding:0; margin:0'>";
-					print "<a data-toggle='modal' href='www/php/hardware/editaccessory.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-info-sign'></span></a>";
+					print "<a data-toggle='modal' href='www/php/hardware/editaccessory.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-edit'></span></a>";
 					print "</form>";
 					print "</td>";
 					print "<td>".$row['Make']."</td>";

@@ -33,7 +33,7 @@
 </div>
 	<div class="modal-body">
 
-	<form id="addForm" action="index.php?page=hardware/allaccessories" method="post" class="form-horizontal">
+	<form id="editForm" action="/resources/process/process.php" method="POST" class="form-horizontal">
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Make">Make</label>
 			<div class="col-xs-5">
@@ -94,8 +94,7 @@
 			<div class="col-xs-5">
 				<?php
 				if ($Status == '' ){
-					print "<label for='Status'>Status:</label>";
-					print "<select name='Status'>";
+					print "<select select class='form-control' name='Status'>";
             		print "<option selected disabled>Choose Status...</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
@@ -104,8 +103,7 @@
             		print "<option value='Damaged'>Damaged</option>";
             		print "</select>";
 				} else {
-					print "<label for='Status'>Status:</label>";
-					print "<select name='Status'>";
+					print "<select select class='form-control' name='Status'>";
             		print "<option selected disabled>".$Status."</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
@@ -125,7 +123,8 @@
 		</div>
 		<div class="form-group">
 			<div class="col-xs-5 col-xs-offset-3">
-				<button type="submit" class="btn btn-default">Save</button>
+				<button type="submit" class="btn btn-danger pull-left" name="DeleteAccessory" value="<?php echo $ID; ?>">Delete Item</button>
+				<button type="submit" class="btn btn-success pull-right" name="UpdateAccessory" value="<?php echo $ID; ?>">Save</button>
 			</div>
 		</div>
 	</form>
@@ -142,7 +141,7 @@
 		},
 	});
 
-  $("#addForm").validate({
+  $("#editForm").validate({
   	errorElement: 'span',
 	errorClass: 'help-block',
 	errorPlacement: function(error, element) {
@@ -153,12 +152,27 @@
 			return $field.parent().next('.messageContainer');
 		}
 	},
+	rules: {
+  		AssetTag: {
+  			required: true,
+  			digits: true,
+  			minlength: 4,
+  		},
+  		SerialNumber: {
+  			required: true,
+  		}
+  	},
   	messages: {
   		Make: {
   			required: "Make required."
   		},
   		Model: {
   			required: "Model required."
+  		},
+  		AssetTag: {
+  			required: "Asset Tag required.",
+  			digits: "Requires digits only.",
+  			minlength: "4 digits minimun.",
   		},
   		SerialNumber: {
   			required: "Serial Number required.",
@@ -167,11 +181,11 @@
   });
   
   $(".modal").on("hidden.bs.modal", function(){
-    	$( "#addForm" ).validate().resetForm();
-    	$( "#addForm" )[0].reset();
-    	$( "#addForm" ).find('.has-error').removeClass("has-error");
-        $( "#addForm" ).find('.has-success').removeClass("has-success");
-        $( "#addForm" ).find('.form-control-feedback').remove()
+    	$( "#editForm" ).validate().resetForm();
+    	$( "#editForm" )[0].reset();
+    	$( "#editForm" ).find('.has-error').removeClass("has-error");
+        $( "#editForm" ).find('.has-success').removeClass("has-success");
+        $( "#editForm" ).find('.form-control-feedback').remove()
 
 	});
 	

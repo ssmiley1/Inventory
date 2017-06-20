@@ -14,10 +14,17 @@ if( isset($_POST['AssetTag']) ){
 		$AssetTag = substr($AssetTag, -4);
 	}
 	
-	$exists = $db->query("SELECT AssetTag FROM '$Table' WHERE AssetTag = '$AssetTag'");
-	
 	$isvalid = true; // Assume we can use the asset tag
 	
+	$exists = $db->query("SELECT AssetTag FROM computers WHERE AssetTag = '$AssetTag'");
+	foreach( $exists as $found ){
+		$isvalid = false; // We cannot use an existing asset tag
+	}
+	$exists = $db->query("SELECT AssetTag FROM mobile WHERE AssetTag = '$AssetTag'");
+	foreach( $exists as $found ){
+		$isvalid = false; // We cannot use an existing asset tag
+	}
+	$exists = $db->query("SELECT AssetTag FROM accessories WHERE AssetTag = '$AssetTag'");
 	foreach( $exists as $found ){
 		$isvalid = false; // We cannot use an existing asset tag
 	}
@@ -30,10 +37,17 @@ if( isset($_POST['SerialNumber']) ){
 	$SerialNumber = $_POST['SerialNumber']; // The serial number to look for
 	$Table = $_POST['Table']; // Which sqlite database table to look in
 	
-	$exists = $db->query("SELECT SerialNumber FROM '$Table' WHERE SerialNumber = '$SerialNumber'");
+	$isvalid = true; // Assume we can use the asset tag
 	
-	$isvalid = true; // Assume we don't have this serial number until we find it
-	
+	$exists = $db->query("SELECT SerialNumber FROM computers WHERE SerialNumber = '$SerialNumber'");
+	foreach( $exists as $found ){
+		$isvalid = false; // We cannot use an existing serial number
+	}
+	$exists = $db->query("SELECT SerialNumber FROM mobile WHERE SerialNumber = '$SerialNumber'");
+	foreach( $exists as $found ){
+		$isvalid = false; // We cannot use an existing serial number
+	}
+	$exists = $db->query("SELECT SerialNumber FROM accessories WHERE SerialNumber = '$SerialNumber'");
 	foreach( $exists as $found ){
 		$isvalid = false; // We cannot use an existing serial number
 	}

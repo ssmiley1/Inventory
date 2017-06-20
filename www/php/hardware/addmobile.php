@@ -8,7 +8,7 @@
 </div>
 	<div class="modal-body">
 
-	<form id="addForm" action="index.php?page=hardware/allmobile" method="post" class="form-horizontal">
+	<form id="addForm" action="/resources/process/process.php" method="POST" class="form-horizontal">
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Make">Make</label>
 			<div class="col-xs-5">
@@ -103,7 +103,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-xs-5 col-xs-offset-3">
-				<button type="submit" class="btn btn-default">Save</button>
+				<button type="submit" class="btn btn-success pull-right" name="AddMobile">Save</button>
 			</div>
 		</div>
 	</form>

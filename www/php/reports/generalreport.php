@@ -33,6 +33,18 @@
 	$damagedmobiles = $db->query("SELECT ID FROM mobile WHERE Status = 'Damaged'");
 	$damagedaccessories = $db->query("SELECT ID FROM accessories WHERE Status = 'Damaged'");
 	
+	$computercount = 0;
+	$mobilecount = 0;
+	$accessorycount = 0;
+	
+	$availcomputercount = 0;
+	$availmobilecount = 0;
+	$availaccessorycount = 0;
+	
+	$damagedcomputercount = 0;
+	$damagedmobilecount = 0;
+	$damagedaccessorycount = 0;
+	
 	foreach($allcomputers as $computer){ $computercount++; }
 	foreach($allmobile as $mobile){ $mobilecount++; }
 	foreach($allaccessories as $accessory){ $accessorycount++; }
@@ -47,6 +59,9 @@
 	
 	$allheusers = $db->query("SELECT ID FROM users");
 	$allfieldusers = $db->query("SELECT ID FROM field");
+	
+	$heusercount = 0;
+	$fieldusercount = 0;
 	
 	foreach($allheusers as $heuser){ $heusercount++; }
 	foreach($allfieldusers as $fielduser){ $fieldusercount++; }

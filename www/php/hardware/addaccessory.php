@@ -8,7 +8,7 @@
 </div>
 	<div class="modal-body">
 
-	<form id="addForm" action="index.php?page=hardware/allaccessories" method="post" class="form-horizontal">
+	<form id="addForm" action="/resources/process/process.php" method="POST" class="form-horizontal">
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Make">Make</label>
 			<div class="col-xs-5">
@@ -30,7 +30,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Asset Tag</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="AssetTag" name="AssetTag"/>
+				<input type="text" class="form-control" id="AssetTag" name="AssetTag" required/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -84,7 +84,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-xs-5 col-xs-offset-3">
-				<button type="submit" class="btn btn-default">Save</button>
+				<button type="submit" class="btn btn-success pull-right" name="AddAccessory">Save</button>
 			</div>
 		</div>
 	</form>
@@ -112,6 +112,36 @@
 			return $field.parent().next('.messageContainer');
 		}
 	},
+	rules: {
+  		AssetTag: {
+  			required: true,
+  			digits: true,
+  			minlength: 4,
+  			remote: {
+  				url: "/resources/process/validate.php",
+  				type: "post",
+  				data: {
+  					AssetTag: function() {
+  						return $("#AssetTag").val();
+  					},
+  					Table: "accessories"
+  				}
+  			}
+  		},
+  		SerialNumber: {
+  			required: true,
+  			remote: {
+  				url: "/resources/process/validate.php",
+  				type: "post",
+  				data: {
+  					SerialNumber: function() {
+  						return $("#SerialNumber").val();
+  					},
+  					Table: "accessories"
+  				}
+  			}
+  		}
+  	},
   	messages: {
   		Make: {
   			required: "Make required."
@@ -119,8 +149,15 @@
   		Model: {
   			required: "Model required."
   		},
+  		AssetTag: {
+  			required: "Asset Tag required.",
+  			digits: "Requires digits only.",
+  			minlength: "4 digits minimun.",
+  			remote: "Already exists."
+  		},
   		SerialNumber: {
   			required: "Serial Number required.",
+  			remote: "Already exists."
   		}
   	}
   });
