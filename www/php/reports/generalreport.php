@@ -115,8 +115,8 @@
 		<div class="panel-heading" style="text-align:center">User Totals</div>
 			<div class="panel-body" align="left">
 				<div class="list-group">
-					<a href="index.php?page=users/allheusers" class="list-group-item">HE Users:<span class="badge badge-important pull-right"><?php print $heusercount; ?></span></a>
-					<a href="index.php?page=users/allfieldusers" class="list-group-item">Field Users:<span class="badge badge-important pull-right"><?php print $fieldusercount; ?></span></a>
+					<a href="index.php?page=users/allusershe" class="list-group-item">HE Users:<span class="badge badge-important pull-right"><?php print $heusercount; ?></span></a>
+					<a href="index.php?page=users/allusersfield" class="list-group-item">Field Users:<span class="badge badge-important pull-right"><?php print $fieldusercount; ?></span></a>
 				</div>
 			</div>
 		</div>

@@ -13,7 +13,7 @@ if( isset($_POST['DeleteUser']) ) {
 	$db->exec("UPDATE OR REPLACE accessories SET AssignedTo = 'Open' WHERE AssignedTo = '$UserToDelete'");
 	$db->exec("UPDATE OR REPLACE software SET AssignedTo = 'Open' WHERE AssignedTo = '$UserToDelete'");
 
-	header("Location: ../../index.php");
+	header("Location: ../../index.php?page=users/allusershe");
 	$db = NULL;
 	
 }
@@ -32,7 +32,7 @@ if( isset($_POST['AddUser']) ) {
 	
 	$db->exec("INSERT INTO users (FirstName, LastName, ADAccount, Email, DeskPhone, StartDate, Department, Position, Notes) VALUES ('$FirstName', '$LastName', '$ADAccount', '$Email', '$DeskPhone', '$StartDate', '$Department', '$Position', '$Notes');");
 
-	header("Location: ../../index.php");
+	header("Location: ../../index.php?page=users/allusershe");
 	$db = NULL;
 	
 }
@@ -52,7 +52,7 @@ if( isset($_POST['UpdateUser']) ) {
 	
 	$db->exec("UPDATE OR REPLACE users SET FirstName = '$FirstName', LastName = '$LastName', ADAccount = '$ADAccount', Email = '$Email', DeskPhone = '$DeskPhone', StartDate = '$StartDate', Department = '$Department', Position = '$Position', Notes = '$Notes' WHERE ID = '$ID'");
 
-	header("Location: ../../index.php");
+	header("Location: ../../index.php?page=users/allusershe");
 	$db = NULL;
 	
 }
@@ -65,7 +65,7 @@ if( isset($_POST['DeleteField']) ) {
 	$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = 'Open' WHERE AssignedTo = 'field$FieldUserToDelete'");
 	$db->exec("UPDATE OR REPLACE computers SET AssignedTo = 'Open' WHERE AssignedTo = 'field$FieldUserToDelete'");
 
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=users/allusersfield");
 	$db = NULL;
 	
 }
@@ -86,7 +86,7 @@ if( isset($_POST['AddField']) ) {
 	
 	$db->exec("INSERT INTO field (FirstName, LastName, FieldType, FieldNumber, DistrictName, HomeStoreNumber, StreetAddress, City, State, ZipCode, Notes) VALUES ('$FirstName', '$LastName', '$FieldType', '$FieldNumber', '$DistrictName', '$HomeStoreNumber', '$StreetAddress', '$City', '$State', '$ZipCode', '$Notes');");
 
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=users/allusersfield");
 	$db = NULL;
 	
 }
@@ -123,7 +123,7 @@ if( isset($_POST['UpdateField']) ) {
 	
 	$db->exec("UPDATE OR REPLACE field SET FirstName = '$FirstName', LastName = '$LastName', FieldNumber = '$FieldNumber', FirstName = '$FirstName', DistrictName = '$DistrictName', HomeStoreNumber = '$HomeStoreNumber', CellPhoneNumber = '$CellPhoneNumber', StreetAddress = '$StreetAddress', City = '$City', ZipCode = '$ZipCode' WHERE ID = '$ID'");
 
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=users/allusersfield");
 	$db = NULL;
 	
 }

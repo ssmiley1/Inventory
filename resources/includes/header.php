@@ -37,17 +37,19 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="menu" aria-haspopup="true" aria-expanded="false">Users <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="index.php?page=users/allheusers">All HE Users</a></li>
-                <li><a href="index.php?page=users/allfieldusers">All Field Users</a></li>
+              	<li class="dropdown-header">View User</li>
+                <li><a href="index.php?page=users/allusershe">All HE Users</a></li>
+                <li><a href="index.php?page=users/allusersfield">All Field Users</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Add User</li>
-                <li><a href="/www/php/users/addheuser.php" data-target="#modal">Add HE User</a></li>
-                <li><a href="/www/php/users/addfielduser.php" data-target="#modal">Add Field User</a></li>
+                <li><a data-toggle="modal" href="/www/php/users/adduserhe.php" data-target="#modal">Add HE User</a></li>
+                <li><a data-toggle="modal" href="/www/php/users/adduserfield.php" data-target="#modal">Add Field User</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Hardware <span class="caret"></span></a>
               <ul class="dropdown-menu">
+              	<li class="dropdown-header">View Hardware</li>
                 <li><a href="index.php?page=hardware/allcomputers">All Computers</a></li>
                 <li><a href="index.php?page=hardware/allmobile" id="allmobile">All Mobile</a></li>
                 <li><a href="index.php?page=hardware/allaccessories" id="allaccessories">All Accessories</a></li>
@@ -63,6 +65,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Software <span class="caret"></span></a>
               <ul class="dropdown-menu">
+              	<li class="dropdown-header">View Software</li>
                 <li><a href="#">All Software</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Add Software</li>

@@ -55,5 +55,16 @@ if( isset($_POST['SerialNumber']) ){
 	echo json_encode($isvalid);
 }
 
+if( isset($_POST['LastName']) ){
+	$FirstName = $_POST['FirstName'];
+	$LastName = $_POST['LastName'];
+	$Table = $_POST['Table'];
+	
+	$isvalid = false;
+	
+	
+	echo json_encode($isvalid);
+}
+
 
 ?>

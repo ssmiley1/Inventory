@@ -134,6 +134,14 @@
   $("#addForm").validate({
   	errorElement: 'span',
 	errorClass: 'help-block',
+	errorPlacement: function(error, element) {
+            error.insertAfter(element.parent());
+    },
+	err: {
+		container: function($field, validator) {
+			return $field.parent().next('.messageContainer');
+		}
+	},
   	rules: {
   		SerialNumber: {
   			required: true,
