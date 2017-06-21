@@ -7,7 +7,6 @@
 <h4 class="modal-title">Add New Accessory</h4>
 </div>
 	<div class="modal-body">
-
 	<form id="addForm" action="/resources/process/process.php" method="POST" class="form-horizontal">
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Make">Make</label>

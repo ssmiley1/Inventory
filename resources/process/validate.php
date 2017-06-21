@@ -56,22 +56,38 @@ if( isset($_POST['SerialNumber']) ){
 }
 
 if( isset($_POST['LastName']) ){
-	$FirstName = $_POST['FirstName'];
-	$LastName = $_POST['LastName'];
+	$FirstName = ucfirst($_POST['FirstName']);
+	$LastName = ucfirst($_POST['LastName']);
 	$Table = $_POST['Table'];
 	
 	$isvalid = true; // Assume we are valid until proven otherwise
 	
 	$CheckLast = $db->query("SELECT LastName FROM users WHERE LastName = '$LastName'");
 	foreach( $CheckLast as $LastFound ){
-		$CheckFirst = $db->query("SELECT FirstName FROM users WHERE FirstName = '$FirstName'");
-		foreach( $CheckFirst as $FirstFound ){
-			$isvalid = false;
+		$LastWasFound = true;
+	}
+	
+	if( $LastWasFound == true ){
+		$CheckFirst = $db->query("SELECT FirstName FROM users WHERE Lastname = '$LastName'");
+		foreach( $CheckFirst as $FirstNamesFound ){
+			if( $FirstNamesFound['FirstName'] == $FirstName ){
+				$isvalid = false;
+			}
 		}
 	}
+
 	
 	
 	echo json_encode($isvalid);
 }
 
 ?>
+
+
+
+
+
+
+
+
+

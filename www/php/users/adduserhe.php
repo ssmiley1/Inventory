@@ -1,3 +1,4 @@
+
 <link href="/www/css/bootstrap.min.css" rel="stylesheet">
 
 <script type="text/javascript" src="/www/js/jquery-validation/dist/jquery.validate.min.js"></script>
@@ -6,7 +7,8 @@
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 <h4 class="modal-title">Add HE User</h4>
 </div>
-<div class="modal-body">
+	<div class="modal-body">
+
 	<form id="addForm" action="/resources/process/process.php" method="POST" class="form-horizontal">
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="FirstName">First Name</label>
@@ -64,11 +66,10 @@
 		</div>
 		<div class="form-group">
 			<div class="col-xs-5 col-xs-offset-3">
-				<button type="submit" class="btn btn-success pull-right" name="AddUser">Save</button>
+				<button type="submit" class="btn btn-success pull-right" name="AddUser" >Save</button>
 			</div>
 		</div>
 	</form>
-</div>
 	
 	
 <script type="text/javascript">
@@ -80,13 +81,6 @@
 		unhighlight: function(element) {
 			$(element).closest('.form-group').removeClass('has-error');
 		},
-		errorPlacement: function(error, element) {
-			if(element.parent('.input-group').length) {
-				error.insertAfter(element.parent());
-			} else {
-				error.insertAfter(element);
-			}
-		}
 	});
 
   $("#addForm").validate({
@@ -100,10 +94,10 @@
 			return $field.parent().next('.messageContainer');
 		}
 	},
-	groups: { 
-  		FullName: "FirstName LastName"
-  	},
-  	rules: {
+	groups: {
+		username: "FirstName LastName"
+  		},
+	rules: {
   		FirstName: {
   			required: true
   		},
@@ -132,9 +126,6 @@
   			required: "Name required.",
   			remote: "User already exists."
   		},
-  		FullName: {
-  			remote: "User already exists."
-  		}
   	}
   });
   
@@ -148,6 +139,7 @@
 	});
 	
 </script>
+
 
 
 
