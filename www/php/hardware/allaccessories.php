@@ -12,7 +12,6 @@
 					<th>Serial Number</th>
 					<th>Asset Tag</th>
 					<th>Description</th>
-					<th>Ethernet MAC</th>
 					<th>Price</th>
 					<th>Assigned To</th>
 					<th>Status</th>
@@ -42,7 +41,6 @@
 					print "<td>".$row['SerialNumber']."</td>";
 					print "<td>".$row['AssetTag']."</td>";
 					print "<td>".$row['Description']."</td>";
-					print "<td>".strtoupper($row['EthernetMAC'])."</td>";
 					print "<td>".$row['PurchasePrice']."</td>";
 		
 					if ( strpos($row['AssignedTo'], 'field') !== false) {

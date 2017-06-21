@@ -37,7 +37,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="DeskPhone">Desk Phone</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="DeskPhone" />
+				<input type="text" class="form-control" name="DeskPhone"/>
 			</div>
 		</div>
 		<div class="form-group">
