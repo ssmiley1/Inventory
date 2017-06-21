@@ -301,6 +301,14 @@ if( isset($_POST['UpdateStore']) ) {
 	
 }
 
+if( isset($_POST['DeletePrinter']) ) {
+	$PrinterToDelete = $_POST['DeletePrinter'];
+	$db->exec("Delete FROM printers WHERE ID = '$PrinterToDelete'");
+	
+	header("Location: ../../index.php?page=hardware/allprinters");
+	$db = NULL;
+}
+
 if( isset($_POST['UpdatePrinter']) ) {
 	
 	$ID = $_POST['UpdatePrinter'];
@@ -315,7 +323,7 @@ if( isset($_POST['UpdatePrinter']) ) {
 	
 	$db->exec("UPDATE OR REPLACE printers SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', PrinterName = '$PrinterName', Location = '$Location', IPAddress = '$IPAddress', MACAddress = '$MACAddress', Notes = '$Notes' WHERE ID = '$ID'");
 
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=hardware/allprinters");
 	$db = NULL;
 	
 }

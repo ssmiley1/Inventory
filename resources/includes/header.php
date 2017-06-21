@@ -54,7 +54,7 @@
                 <li><a href="index.php?page=hardware/allmobile" id="allmobile">All Mobile</a></li>
                 <li><a href="index.php?page=hardware/allaccessories" id="allaccessories">All Accessories</a></li>
                 <li><a href="index.php?page=hardware/allciscovoip" id="allciscovoip">All Cisco VOIP</a></li>
-                <li><a href="index.php?page=hardware/allxerox" id="allxerox">All XEROX</a></li>
+                <li><a href="index.php?page=hardware/allprinters" id="allxerox">All Printers</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Add Hardware</li>
                 <li><a data-toggle="modal" href="/www/php/hardware/addcomputer.php" data-target="#modal">Add Computer</a></li>
