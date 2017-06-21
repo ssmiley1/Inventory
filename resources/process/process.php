@@ -115,13 +115,9 @@ if( isset($_POST['UpdateField']) ) {
 	}
 	
 	$ZipCode = $_POST['ZipCode'];
+	$Notes = $_POST['Notes'];
 	
-	if( isset($_POST['Notes'])){
-    	$Notes = $_POST['Notes'];
-    	$db->exec("UPDATE OR REPLACE field SET Notes = '$Notes' WHERE ID = '$ID'");
-	}
-	
-	$db->exec("UPDATE OR REPLACE field SET FirstName = '$FirstName', LastName = '$LastName', FieldNumber = '$FieldNumber', FirstName = '$FirstName', DistrictName = '$DistrictName', HomeStoreNumber = '$HomeStoreNumber', CellPhoneNumber = '$CellPhoneNumber', StreetAddress = '$StreetAddress', City = '$City', ZipCode = '$ZipCode' WHERE ID = '$ID'");
+	$db->exec("UPDATE OR REPLACE field SET FirstName = '$FirstName', LastName = '$LastName', FieldNumber = '$FieldNumber', FirstName = '$FirstName', DistrictName = '$DistrictName', HomeStoreNumber = '$HomeStoreNumber', CellPhoneNumber = '$CellPhoneNumber', StreetAddress = '$StreetAddress', City = '$City', ZipCode = '$ZipCode', Notes = '$Notes' WHERE ID = '$ID'");
 
 	header("Location: ../../index.php?page=users/allusersfield");
 	$db = NULL;

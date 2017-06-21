@@ -31,8 +31,9 @@
 			{
 			
 				$UserID = "field".$row['ID'];
-				$AssignedMobilePhoneNumber = NULL;
 				
+				# Check if there is a mobile phone in the mobile table assigned to this user
+				$AssignedMobilePhoneNumber = NULL;
 				$AssignedCellPhoneNumber = $db->query("SELECT PhoneNumber FROM mobile WHERE AssignedTo = '$UserID'");
 				foreach( $AssignedCellPhoneNumber as $number ){
 					$AssignedMobilePhoneNumber = $number['PhoneNumber'];
@@ -48,13 +49,14 @@
 				print "<td>".$row['FieldType'].$row['FieldNumber']."</td>";
 				print "<td>".$row['FirstName']." ".$row['LastName']."</td>";
 				print "<td>".$row['DistrictName']."</td>";
-				print "<td>";
+
+				# Display the assigned cell phone number, or if doesn't exist, use the one (possibly older info) that exists in the field table
 				if( ($row['CellPhoneNumber'] == NULL) or ($row['CellPhoneNumber'] == '') ){
-					print $AssignedMobilePhoneNumber;
+					print "<td>".$AssignedMobilePhoneNumber."</td>";
 				}else{
-					print $row['CellPhoneNumber'];
+					print "<td>".$row['CellPhoneNumber']."</td>";
 				}
-				print "</td>";
+
 				print "<td>".$row['StreetAddress']."</td>";
 				print "<td>".$row['City']."</td>";
 				print "<td>".$row['State']."</td>";
