@@ -4,6 +4,14 @@
 
 $db = new PDO('sqlite:../../db/Inventory.db');
 
+function Sanitize($ToClean){
+	$ToClean = trim($ToClean);
+	$ToClean = htmlspecialchars($ToClean);
+	$ToClean = strip_tags($ToClean);
+	
+	return $ToClean;
+}
+
 if( isset($_POST['AssetTag']) ){
 
 	$AssetTag = $_POST['AssetTag']; // The asset tag to look for
@@ -56,9 +64,9 @@ if( isset($_POST['SerialNumber']) ){
 }
 
 if( isset($_POST['LastName']) ){
-	$FirstName = ucfirst($_POST['FirstName']);
-	$LastName = ucfirst($_POST['LastName']);
-	$Table = $_POST['Table'];
+	$FirstName = Sanitize(ucfirst($_POST['FirstName']));
+	$LastName = Sanitize(ucfirst($_POST['LastName']));
+	$Table = Sanitize($_POST['Table']);
 	
 	$isvalid = true; // Assume we are valid until proven otherwise
 	
@@ -75,11 +83,34 @@ if( isset($_POST['LastName']) ){
 			}
 		}
 	}
-
-	
 	
 	echo json_encode($isvalid);
 }
+
+if( isset($_POST['FieldNumber']) ){
+
+	$FieldType = $_POST['FieldType'];
+	$FieldNumber = $_POST['FieldNumber'];
+	$isvalid = true;
+	
+	$CheckFieldNumber = $db->query("SELECT FieldNumber FROM field WHERE FieldNumber = '$FieldNumber'");
+	foreach( $CheckFieldNumber as $NumberFound ){
+		$NumberWasFound = true;
+	}
+	
+	if( $NumberWasFound == true ){
+		$CheckFieldType = $db->query("SELECT FieldType FROM field WHERE FieldNumber = '$FieldNumber'");
+		foreach( $CheckFieldType as $FieldTypeFound ){
+			if( $FieldTypeFound['FieldType'] == $FieldType ){
+				$isvalid = false;
+			}
+		}
+	}
+	
+	echo json_encode($isvalid);
+}
+
+
 
 ?>
 
