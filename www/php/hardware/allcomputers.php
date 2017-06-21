@@ -28,7 +28,7 @@
 				  echo $db->lastErrorMsg();
 				} else {
 
-				$allcomputers = $db->query("SELECT * FROM computers WHERE Status != 'Damaged' ORDER BY 'Make' ASC");
+				$allcomputers = $db->query("SELECT * FROM computers ORDER BY 'Make' ASC");
 
 				foreach($allcomputers as $row)
 				{

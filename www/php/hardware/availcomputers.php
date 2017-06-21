@@ -2,19 +2,18 @@
 
 <body>
 <div class="container-fluid">
-		<h3>All Mobile</h3>
+		<h3>All Available Computers</h3>
 		<table id="datatable" class="table table-sm table-bordered table-striped table-hover display nowrap" width="100%" style="font-size:15px">
 			<thead>
 				<tr>
 					<th>Edit</th>
 					<th>Make</th>
 					<th>Model</th>
-					<th>Asset Tag</th>
 					<th>Serial Number</th>
-					<th>IMEI</th>
-					<th>ICCID</th>
-					<th>Carrier</th>
-					<th>Phone Number</th>
+					<th>Type</th>
+					<th>Asset Tag</th>
+					<th>Ethernet MAC</th>
+					<th>WiFi MAC</th>
 					<th>Price</th>
 					<th>Assigned To</th>
 					<th>Status</th>
@@ -29,24 +28,23 @@
 				  echo $db->lastErrorMsg();
 				} else {
 
-				$allmobile = $db->query("SELECT * FROM mobile ORDER BY 'Make' ASC");
+				$allcomputers = $db->query("SELECT * FROM computers WHERE Status = 'Available' AND AssignedTo = 'Open' ORDER BY 'Make' ASC");
 
-				foreach($allmobile as $row)
+				foreach($allcomputers as $row)
 				{
 					print "<tr>";
 					print "<td>";
-					print "<form action='www/php/hardware/editmobile.php' method='POST' style='padding:0; margin:0'>";
-					print "<a data-toggle='modal' href='www/php/hardware/editmobile.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-edit'></span></a>";
+					print "<form action='www/php/hardware/editcomputer.php' method='POST' style='padding:0; margin:0'>";
+					print "<a data-toggle='modal' href='www/php/hardware/editcomputer.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-edit'></span></a>";
 					print "</form>";
 					print "</td>";
 					print "<td>".$row['Make']."</td>";
 					print "<td>".$row['Model']."</td>";
-					print "<td>".$row['AssetTag']."</td>";
 					print "<td>".$row['SerialNumber']."</td>";
-					print "<td>".$row['IMEI']."</td>";
-					print "<td>".$row['ICCID']."</td>";
-					print "<td>".$row['Carrier']."</td>";
-					print "<td>".$row['PhoneNumber']."</td>";
+					print "<td>".$row['Type']."</td>";
+					print "<td>".$row['AssetTag']."</td>";
+					print "<td>".strtoupper($row['EthernetMAC'])."</td>";
+					print "<td>".strtoupper($row['WiFiMAC'])."</td>";
 					print "<td>".$row['PurchasePrice']."</td>";
 		
 					if ( strpos($row['AssignedTo'], 'field') !== false) {

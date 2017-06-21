@@ -26,7 +26,7 @@
 				  echo $db->lastErrorMsg();
 				} else {
 
-				$allaccessories = $db->query("SELECT * FROM accessories WHERE Status != 'Damaged' ORDER BY 'Make' ASC");
+				$allaccessories = $db->query("SELECT * FROM accessories ORDER BY 'Make' ASC");
 
 				foreach($allaccessories as $row)
 				{

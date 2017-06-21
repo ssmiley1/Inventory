@@ -78,10 +78,12 @@
 			<div class="col-xs-5">
 				<select class="form-control">
 				<option selected>Choose Status...</option>
-				<option>Available</option>
-				<option>New in box</option>
-				<option>Damaged</option>
-				<option>To recycle</option>
+				<option value="New in box">New in box</option>
+				<option value="Available">Available</option>
+				<option value="Assinged">Assigned</option>
+				<option value="On hold">On hold</option>
+				<option value="Damaged">Damaged</option>
+				<option value="To recycle">To recycle</option>
 				</select>
 			</div>
 		</div>

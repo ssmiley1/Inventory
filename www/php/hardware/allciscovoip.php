@@ -26,7 +26,7 @@
 				  echo $db->lastErrorMsg();
 				} else {
 
-				$allaccessories = $db->query("SELECT * FROM accessories WHERE Description = 'Cisco VOIP Desk Phone' AND Status != 'Damaged' ORDER BY 'Model' ASC");
+				$allaccessories = $db->query("SELECT * FROM accessories WHERE Description = 'Cisco VOIP Desk Phone' ORDER BY 'Model' ASC");
 
 				foreach($allaccessories as $row)
 				{

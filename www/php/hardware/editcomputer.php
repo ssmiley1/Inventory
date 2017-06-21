@@ -53,7 +53,12 @@
 		{
 			$AssignedToName = "$name[FirstName] $name[LastName]";
 		}
-	} 
+	}
+	
+	if( $AssignedTo !== "Open" ){
+		$Status = "Assigned";
+	}
+	
 ?>
 
 <link href="/www/css/bootstrap.min.css" rel="stylesheet">
@@ -144,23 +149,25 @@
 			<div class="col-xs-5">
 				<?php
 				if ($Status == '' ){
-					print "<select class='form-control' name='Status'>";
-            		print "<option selected disabled>Choose Status...</option>";
-            		print "<option value='New in box'>New in box</option>";
-            		print "<option value='Available'>Available</option>";
-            		print "<option value='Locked'>Locked</option>";
-            		print "<option value='Suspended'>Suspended</option>";
-            		print "<option value='Damaged'>Damaged</option>";
-            		print "</select>";
+					print "<select class='form-control'>";
+					print "<option selected>Choose Status...</option>";
+					print "<option value='New in box'>New in box</option>";
+					print "<option value='Available'>Available</option>";
+					print "<option value='Assinged'>Assigned</option>";
+					print "<option value='On hold'>On hold</option>";
+					print "<option value='Damaged'>Damaged</option>";
+					print "<option value='To recycle'>To recycle</option>";
+					print "</select>";
 				} else {
-					print "<select select class='form-control' name='Status'>";
-            		print "<option selected disabled>".$Status."</option>";
-            		print "<option value='New in box'>New in box</option>";
-            		print "<option value='Available'>Available</option>";
-            		print "<option value='Locked'>Locked</option>";
-            		print "<option value='Suspended'>Suspended</option>";
-            		print "<option value='Damaged'>Damaged</option>";
-            		print "</select>";
+					print "<select class='form-control'>";
+					print "<option selected>".$Status."</option>";
+					print "<option value='New in box'>New in box</option>";
+					print "<option value='Available'>Available</option>";
+					print "<option value='Assinged'>Assigned</option>";
+					print "<option value='On hold'>On hold</option>";
+					print "<option value='Damaged'>Damaged</option>";
+					print "<option value='To recycle'>To recycle</option>";
+					print "</select>";
 				}
 			?>
 			</div>
