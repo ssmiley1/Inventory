@@ -60,11 +60,18 @@ if( isset($_POST['LastName']) ){
 	$LastName = $_POST['LastName'];
 	$Table = $_POST['Table'];
 	
-	$isvalid = false;
+	$isvalid = true; // Assume we are valid until proven otherwise
+	
+	$CheckLast = $db->query("SELECT LastName FROM users WHERE LastName = '$LastName'");
+	foreach( $CheckLast as $LastFound ){
+		$CheckFirst = $db->query("SELECT FirstName FROM users WHERE FirstName = '$FirstName'");
+		foreach( $CheckFirst as $FirstFound ){
+			$isvalid = false;
+		}
+	}
 	
 	
 	echo json_encode($isvalid);
 }
-
 
 ?>

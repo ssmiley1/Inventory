@@ -75,14 +75,10 @@
 
 	$.validator.setDefaults({
 		highlight: function(element) {
-
 			$(element).closest('.form-group').addClass('has-error');
-
 		},
 		unhighlight: function(element) {
-
 			$(element).closest('.form-group').removeClass('has-error');
-
 		},
 		errorPlacement: function(error, element) {
 			if(element.parent('.input-group').length) {
@@ -104,6 +100,9 @@
 			return $field.parent().next('.messageContainer');
 		}
 	},
+	groups: { 
+  		FullName: "FirstName LastName"
+  	},
   	rules: {
   		FirstName: {
   			required: true
@@ -114,6 +113,9 @@
   				url: "/resources/process/validate.php",
   				type: "post",
   				data: {
+  					FirstName: function() {
+  						return $("#FirstName").val();
+  					},
   					LastName: function() {
   						return $("#LastName").val();
   					},
@@ -128,7 +130,10 @@
   		},
   		LastName: {
   			required: "Name required.",
-  			remote: "Name already exists."
+  			remote: "User already exists."
+  		},
+  		FullName: {
+  			remote: "User already exists."
   		}
   	}
   });
