@@ -1,7 +1,7 @@
 <?php include(INCLUDES ."activateDatatable.php"); ?>
 
 <body>
-<div class="container-fluid">
+<div class="container-fluid hidden-print">
 	<h3>All Field Users</h3>
 	<table id="datatable" class="table table-sm table-bordered table-striped table-hover display nowrap" width="100%" style="font-size:15px">
 		<thead>
@@ -108,6 +108,22 @@
 	$("#shippingmodal").on('hidden.bs.modal', function () {
     	$(this).data('bs.modal', null);
 	});
+	
+	( function($) {
+	  $(document).ready(function(){
+		// Add Print Classes for Modal
+		$('.modal').on('shown.bs.modal',function() {
+			$('.modal,.modal-backdrop').addClass('toPrint');
+			$('body').addClass('non-print');
+		});
+		// Remove classes
+		$('.modal').on('hidden.bs.modal',function() {
+			$('.modal,.modal-backdrop').removeClass('toPrint');
+			$('body').removeClass('non-print');
+		});
+	  });
+	})( jQuery );
+	
 </script>
 
 </body>
