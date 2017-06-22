@@ -31,14 +31,23 @@
 				{
 					print "<tr>";
 					print "<td>";
-					print "<form class='form-inline' style='padding:0; margin:0'>";
-					print "<div class='form-group'>";
+					
+					print "<form class='inline-form' style='padding:0; margin:0'>"; 
+					print "<div class='row'>";
+					
+					print "<div class='form-group col-sm-2'>";
 					print "<form action='www/php/hardware/editprinter.php' method='POST' style='padding:0; margin:0'>";
-					print "<a data-toggle='modal' href='www/php/hardware/editprinter.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-edit'></span> </a>";
+					print "<a data-toggle='modal' href='www/php/hardware/editprinter.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-edit'></span></a>";
 					print "</form>";
-					print "<a href='http://".$row['IPAddress']."' target='_blank'><span class='glyphicon glyphicon-info-sign'></span> </a>";
-					print "</div>";
-					print "</form>";
+					print "</div>"; #<-- div col-sm-2
+					
+					print "<div class='form-group col-sm-2'>";
+					print "<a href='http://".$row['IPAddress']."' target='_blank'><span class='glyphicon glyphicon-info-sign'></span></a>";
+					print "</div>"; #<-- div col-sm-2
+					
+					print "</div>"; #<-- div row
+					print "</form>"; #<-- form inline-form
+					
 					print "</td>";
 					print "<td>".$row['Make']."</td>";
 					print "<td>".$row['Model']."</td>";

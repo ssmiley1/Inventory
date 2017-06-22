@@ -41,9 +41,25 @@
 			
 				print "<tr>";
 				print "<td>";
+				
+				print "<form class='inline-form' style='padding:0; margin:0'>";
+				print "<div class='row'>";
+				
+				print "<div class='form-group col-sm-2'>";
 				print "<form action='www/php/users/edituserfield.php' method='POST' style='padding:0; margin:0'>";
 				print "<a data-toggle='modal' href='www/php/users/edituserfield.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-edit'></span></a>";
 				print "</form>";
+				print "</div>"; #<-- div col-sm-2
+				
+				print "<div class='form-group col-sm-2'>";
+				print "<form action='www/php/users/fieldship.php' method='POST' style='padding:0; margin:0'>";
+				print "<a data-toggle='modal' href='www/php/users/fieldship.php?ID=".$row['ID']."' data-target='#shippingmodal'><span class='glyphicon glyphicon-send'></span></a>";
+				print "</form>";
+				print "</div>"; #<-- div col-sm-2
+				
+				print "</div>"; #<-- row
+				print "</form>"; #<-- inline-form
+				
 				print "</td>";
 				
 				print "<td>".$row['FieldType'].$row['FieldNumber']."</td>";
@@ -78,8 +94,18 @@
 	</div>
 </div>
 
+<div class="modal fade" id="shippingmodal">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+		</div>
+	</div>
+</div>
+
 <script>
 	$("#editmodal").on('hidden.bs.modal', function () {
+    	$(this).data('bs.modal', null);
+	});
+	$("#shippingmodal").on('hidden.bs.modal', function () {
     	$(this).data('bs.modal', null);
 	});
 </script>

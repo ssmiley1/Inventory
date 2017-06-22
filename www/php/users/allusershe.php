@@ -1,5 +1,9 @@
 <?php include(INCLUDES ."activateDatatable.php"); ?>
 
+<script>
+
+</script>
+
 <body>
 <div class="container-fluid">
 	<h3>All HE Users</h3>
@@ -30,13 +34,25 @@
 			{
 				print "<tr>";
 				print "<td>";
-				print "<form class='form-inline' style='padding:0; margin:0'>";
-				print "<div class='form-group'>";
+				
+				print "<form class='inline-form' style='padding:0; margin:0'>";
+				print "<div class='row'>";
+				
+				print "<div class='form-group col-sm-2'>";
 				print "<form action='www/php/users/edituserhe.php' method='POST' style='padding:0; margin:0'>";
-				print "<a data-toggle='modal' href='www/php/users/edituserhe.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-edit'></span> </a>";
-				print "<a href='#' id='popover' data-toggle='popover' data-trigger='hover' data-poload='www/php/users/assigned.php?ID=".$row['ID']."'><span class='glyphicon glyphicon-info-sign'></span> </a>";
-				print "</div>";
+				print "<a data-toggle='modal' href='www/php/users/edituserhe.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-edit'></span></a>";
 				print "</form>";
+				print "</div>"; #<-- div col-sm-2
+				
+				print "<div class='form-group col-sm-2'>";
+				print "<form action='www/php/users/assigned.php' method='POST' style='padding:0; margin:0'>";
+				print "<a data-toggle='modal' href='www/php/users/assigned.php?ID=".$row['ID']."' data-target='#assignedmodal'><span class='glyphicon glyphicon-list-alt'></span></a>";
+				print "</form>";
+				print "</div>"; #<-- div col-sm-2
+				
+				print "</div>"; #<-- row
+				print "</form>"; #<-- inline-form
+				
 				print "</td>";
 		
 				$FNameLName = $db->query('SELECT FirstName, LastName FROM users WHERE ID = '.$row['ID']);
@@ -82,14 +98,24 @@
 	</div>
 </div>
 
+<div class="modal fade" id="assignedmodal">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+		</div>
+	</div>
+</div>
+
 <script>
 	$("#editmodal").on('hidden.bs.modal', function () {
+    	$(this).data('bs.modal', null);
+	});
+	$("#assignedmodal").on('hidden.bs.modal', function () {
     	$(this).data('bs.modal', null);
 	});
 	
 	
 	
-	$('*[data-poload]').hover(function() {
+	$('*[data-poload]').click(function() {
     	var e=$(this);
     	e.off('hover');
     	$.get(e.data('poload'),function(d) {
