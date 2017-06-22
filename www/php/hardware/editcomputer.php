@@ -149,7 +149,7 @@
 			<div class="col-xs-5">
 				<?php
 				if ($Status == '' ){
-					print "<select class='form-control'>";
+					print "<select class='form-control' name='Status' id='Status'>";
 					print "<option selected>Choose Status...</option>";
 					print "<option value='New in box'>New in box</option>";
 					print "<option value='Available'>Available</option>";
@@ -159,7 +159,7 @@
 					print "<option value='To recycle'>To recycle</option>";
 					print "</select>";
 				} else {
-					print "<select class='form-control'>";
+					print "<select class='form-control' name='Status' id='Status'>";
 					print "<option selected>".$Status."</option>";
 					print "<option value='New in box'>New in box</option>";
 					print "<option value='Available'>Available</option>";
@@ -175,7 +175,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Notes</label>
 			<div class="col-xs-5">
-				<textarea class="form-control" name="Notes" style="resize:none"><?php echo $Notes; ?></textarea>
+				<textarea class="form-control" name="Notes" id="Notes" style="resize:none"><?php echo $Notes; ?></textarea>
 			</div>
 		</div>
 		<div class="form-group">

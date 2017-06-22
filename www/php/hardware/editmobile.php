@@ -95,19 +95,19 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="IMEI">IMEI</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="IMEI" value="<?php echo $IMEI; ?>" />
+				<input type="text" class="form-control" id="IMEI" name="IMEI" value="<?php echo $IMEI; ?>" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="ICCID">ICCID</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="ICCID" value="<?php echo $ICCID; ?>" />
+				<input type="text" class="form-control" id="ICCID" name="ICCID" value="<?php echo $ICCID; ?>" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Carrier">Carrier</label>
 			<div class="col-xs-5">
-				<select class="form-control" name="Carrier">
+				<select class="form-control" name="Carrier" id="Carrier">
 					<option selected disabled><?php echo $Carrier; ?></option>
 					<option value="ATT">ATT</option>
 					<option value="Verizon">Verizon</option>
@@ -120,26 +120,26 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="PhoneNumber">Phone Number</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="PhoneNumber" value="<?php echo $PhoneNumber; ?>" />
+				<input type="text" class="form-control" id="PhoneNumber" name="PhoneNumber" value="<?php echo $PhoneNumber; ?>" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Purchase Price</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="PurchasePrice" value="<?php echo $PurchasePrice; ?>" />
+				<input type="text" class="form-control" id="PurchasePrice" name="PurchasePrice" value="<?php echo $PurchasePrice; ?>" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Purchase Date</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="PurchaseDate" value="<?php echo $PurchaseDate; ?>" />
+				<input type="text" class="form-control" id="PurchaseDate" name="PurchaseDate" value="<?php echo $PurchaseDate; ?>" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Assigned To</label>
 			<div class="col-xs-5">
 				<?php
-				print "<select class='form-control' name='AssignedToID'>";
+				print "<select class='form-control' name='AssignedToID' id='AssignedToID'>";
 				print "<option selected disabled>".$AssignedToName."</option>";
 				print "<option value='Open'>Open</option>";
 				foreach ($AllUsers as $user) {
@@ -154,7 +154,7 @@
 			<div class="col-xs-5">
 				<?php
 				if ($Status == '' ){
-					print "<select select class='form-control' name='Status'>";
+					print "<select select class='form-control' name='Status' id='Status'>";
             		print "<option selected disabled>Choose Status...</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
@@ -163,7 +163,7 @@
             		print "<option value='Damaged'>Damaged</option>";
             		print "</select>";
 				} else {
-					print "<select select class='form-control' name='Status'>";
+					print "<select select class='form-control' name='Status' id='Status'>";
             		print "<option selected disabled>".$Status."</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
@@ -178,7 +178,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Notes</label>
 			<div class="col-xs-5">
-				<textarea class="form-control" name="Notes" style="resize:none"><?php echo $Notes; ?></textarea>
+				<textarea class="form-control" name="Notes" id="Notes" style="resize:none"><?php echo $Notes; ?></textarea>
 			</div>
 		</div>
 		<div class="form-group">

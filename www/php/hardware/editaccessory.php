@@ -99,20 +99,20 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Ethernet MAC</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="EthernetMAC" value="<?php echo $EthernetMAC; ?>" />
+				<input type="text" class="form-control" id="EthernetMAC" name="EthernetMAC" value="<?php echo $EthernetMAC; ?>" />
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Purchase Price</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="PurchasePrice" value="<?php echo $PurchasePrice; ?>" />
+				<input type="text" class="form-control" id="PurchasePrice" name="PurchasePrice" value="<?php echo $PurchasePrice; ?>" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Purchase Date</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="PurchaseDate" value="<?php echo $PurchaseDate; ?>" />
+				<input type="text" class="form-control" id="PurchaseDate" name="PurchaseDate" value="<?php echo $PurchaseDate; ?>" />
 			</div>
 		</div>
 		<div class="form-group">
@@ -120,7 +120,7 @@
 			<div class="col-xs-5">
 				<!-- <input type="text" class="form-control" name="AssignedTo" value="<?php echo $AssignedToName; ?>" /> -->
 				<?php
-				print "<select class='form-control' name='AssignedToID'>";
+				print "<select class='form-control' name='AssignedToID' id='AssignedToID'>";
 				print "<option selected disabled>".$AssignedToName."</option>";
 				print "<option value='Open'>Open</option>";
 				foreach ($AllUsers as $user) {
@@ -137,7 +137,7 @@
 			<div class="col-xs-5">
 				<?php
 				if ($Status == '' ){
-					print "<select class='form-control' name='Status'>";
+					print "<select class='form-control' name='Status' id='Status'>";
             		print "<option selected disabled>Choose Status...</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
@@ -146,7 +146,7 @@
             		print "<option value='Damaged'>Damaged</option>";
             		print "</select>";
 				} else {
-					print "<select select class='form-control' name='Status'>";
+					print "<select select class='form-control' name='Status' id='Status'>";
             		print "<option selected disabled>".$Status."</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
@@ -161,7 +161,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Notes</label>
 			<div class="col-xs-5">
-				<textarea class="form-control" name="Notes" style="resize:none"><?php echo $Notes; ?></textarea>
+				<textarea class="form-control" name="Notes" id="Notes" style="resize:none"><?php echo $Notes; ?></textarea>
 			</div>
 		</div>
 		<div class="form-group">

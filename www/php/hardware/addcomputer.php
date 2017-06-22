@@ -76,7 +76,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Status</label>
 			<div class="col-xs-5">
-				<select class="form-control">
+				<select class="form-control" id="Status" name="Status">
 				<option selected>Choose Status...</option>
 				<option value="New in box">New in box</option>
 				<option value="Available">Available</option>
@@ -90,7 +90,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Notes</label>
 			<div class="col-xs-5">
-				<textarea class="form-control" id="Notes" style="resize:none"></textarea>
+				<textarea class="form-control" id="Notes" name="Notes" style="resize:none"></textarea>
 			</div>
 		</div>
 		<div class="form-group">

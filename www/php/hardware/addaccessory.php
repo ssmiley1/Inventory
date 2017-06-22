@@ -41,32 +41,32 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Ethernet MAC</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="EthernetMAC" />
+				<input type="text" class="form-control" id="EthernetMAC" name="EthernetMAC" />
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Purchase Price</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="PurchasePrice" />
+				<input type="text" class="form-control" id="PurchasePrice" name="PurchasePrice" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Purchase Date</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="PurchaseDate" />
+				<input type="text" class="form-control" id="PurchaseDate" name="PurchaseDate" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Assigned To</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" name="AssignedTo" />
+				<input type="text" class="form-control" id="AssignedTo" name="AssignedTo" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Status</label>
 			<div class="col-xs-5">
-				<select class="form-control">
+				<select class="form-control" id="Status" name="Status">
 				<option selected>Choose Status...</option>
 				<option>Available</option>
 				<option>New in box</option>
@@ -76,7 +76,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-xs-3 control-label">Notes</label>
+			<label class="col-xs-3 control-label" id="Notes" name="Notes">Notes</label>
 			<div class="col-xs-5">
 				<textarea class="form-control" id="Notes" style="resize:none"></textarea>
 			</div>
