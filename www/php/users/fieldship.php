@@ -109,30 +109,33 @@
 		 	</div>
 		 	<br>
 		 	<div class="row">
-		 		<div class="col-sm-3">
+		 		<div class="col-sm-4">
 		 			<div class="input-group">
   						<span class="input-group-addon" id="basic-addon1">Insured</span>
   						<span class="input-group-addon"><input type="checkbox" id="InsuranceCheckbox" name="InsuranceCheckbox"/></span>
   						<input type="text" class="form-control" value="" id="insurance" name="insurance" aria-describedby="basic-addon1">
 					</div>
 		 		</div>
-		 		<div class="col-sm-3">
+		 		<div class="col-sm-4">
 		 			<div class="input-group">
   						<span class="input-group-addon" id="basic-addon1">Shipping</span>
-							<select select class="form-control" name="Shipping" id="Shipping" style="width:120px">
+							<select select class="form-control" name="Shipping" id="Shipping">
 								<option selected value="Standard Overnight">Standard Overnight</option>
 								<option value="Priority Overnight">Priority Overnight</option>
 								<option value="Standard 2nd Day">Standard 2nd Day</option>
 							</select>
 					</div>
 		 		</div>
-		 		<div class="col-sm-3">
+		 	</div>
+		 	<br>
+		 	<div class="row">
+		 		<div class="col-sm-4">
 		 			<div class="input-group">
   						<span class="input-group-addon" id="basic-addon1">Signature</span>
   						<input type="text" class="form-control" value="Yes" aria-describedby="basic-addon1">
 					</div>
 		 		</div>
-		 		<div class="col-sm-3">
+		 		<div class="col-sm-4">
 		 			<div class="input-group">
   						<span class="input-group-addon" id="basic-addon1">Tracking</span>
   						<input type="text" class="form-control" value="Yes" aria-describedby="basic-addon1">
@@ -143,7 +146,7 @@
 		 	<div class="row">
 		 		<div class="form-group">
 					<div class="col-xs-12">
-						<button type="submit" class="btn btn-success pull-right" name="PrintButton" onClick="window.print();return false">Print</button>
+						<button type="submit" class="btn btn-success pull-right" name="PrintButton" onclick="printDiv('shippingmodal')">Print</button>
 					</div>
 				</div>
 		 	</div>

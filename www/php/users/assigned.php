@@ -24,7 +24,6 @@
 </div>
 	<div class="modal-body">
 		<div class="panel panel-default" style="width:100%">
-		
 			<div class="panel-heading" style="text-align:left">Computers</div>
 				<table class="table table-sm">
 					<thead>
@@ -51,6 +50,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="modal-body">
 		<div class="panel panel-default" style="width:100%">
 			<div class="panel-heading" style="text-align:left">Mobile</div>
@@ -79,6 +79,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="modal-body">
 		<div class="panel panel-default" style="width:100%">
 			<div class="panel-heading" style="text-align:left">Accessories</div>
@@ -109,7 +110,17 @@
 			</div>
 		</div>
 	</div>
+	
+<div class="modal-body">
+	<div class="row">
+		<div class="form-group">
+			<div class="col-xs-12">
+				<button type="submit" class="btn btn-success pull-right" name="PrintButton" onclick="printDiv('assignedmodal')">Print</button>
+			</div>
+		</div>
+	</div>
 </div>
+
 
 
 

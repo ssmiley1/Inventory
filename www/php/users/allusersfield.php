@@ -109,20 +109,20 @@
     	$(this).data('bs.modal', null);
 	});
 	
-	( function($) {
-	  $(document).ready(function(){
-		// Add Print Classes for Modal
-		$('.modal').on('shown.bs.modal',function() {
-			$('.modal,.modal-backdrop').addClass('toPrint');
-			$('body').addClass('non-print');
-		});
-		// Remove classes
-		$('.modal').on('hidden.bs.modal',function() {
-			$('.modal,.modal-backdrop').removeClass('toPrint');
-			$('body').removeClass('non-print');
-		});
-	  });
-	})( jQuery );
+	function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+     
+     $('#shippingmodal').hide();
+     $('.modal-backdrop').hide();
+     
+	}
 	
 </script>
 

@@ -5,7 +5,7 @@
 </script>
 
 <body>
-<div class="container-fluid">
+<div class="container-fluid hidden-print">
 	<h3>All HE Users</h3>
 	<table id="datatable" class="table table-sm table-bordered table-striped table-hover display nowrap" width="100%" style="font-size:15px">
 		<thead>
@@ -113,8 +113,6 @@
     	$(this).data('bs.modal', null);
 	});
 	
-	
-	
 	$('*[data-poload]').click(function() {
     	var e=$(this);
     	e.off('hover');
@@ -122,6 +120,21 @@
         	e.popover({html: true, content: d}).popover('show');
     	});
 	});
+	
+	function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+     
+     $('#assignedmodal').hide();
+     $('.modal-backdrop').hide();
+     
+	}
 	
 </script>
 
