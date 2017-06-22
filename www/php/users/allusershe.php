@@ -30,8 +30,12 @@
 			{
 				print "<tr>";
 				print "<td>";
+				print "<form class='form-inline' style='padding:0; margin:0'>";
+				print "<div class='form-group'>";
 				print "<form action='www/php/users/edituserhe.php' method='POST' style='padding:0; margin:0'>";
-				print "<a data-toggle='modal' href='www/php/users/edituserhe.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-edit'></span></a>";
+				print "<a data-toggle='modal' href='www/php/users/edituserhe.php?ID=".$row['ID']."' data-target='#editmodal'><span class='glyphicon glyphicon-edit'></span> </a>";
+				print "<a href='#' id='popover' data-toggle='popover' data-trigger='hover' data-poload='www/php/users/assigned.php?ID=".$row['ID']."'><span class='glyphicon glyphicon-info-sign'></span> </a>";
+				print "</div>";
 				print "</form>";
 				print "</td>";
 		
@@ -82,6 +86,17 @@
 	$("#editmodal").on('hidden.bs.modal', function () {
     	$(this).data('bs.modal', null);
 	});
+	
+	
+	
+	$('*[data-poload]').hover(function() {
+    	var e=$(this);
+    	e.off('hover');
+    	$.get(e.data('poload'),function(d) {
+        	e.popover({html: true, content: d}).popover('show');
+    	});
+	});
+	
 </script>
 
 </body>
