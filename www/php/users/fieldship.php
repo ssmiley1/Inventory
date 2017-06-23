@@ -34,7 +34,7 @@
 		 		<div class="col-sm-4">
 		 			<div class="input-group">
   						<span class="input-group-addon" id="basic-addon1">Requested By</span>
-  						<input type="text" class="form-control" placeholder="Requester Name" id="RequestedBy" name="RequestedBy" aria-describedby="basic-addon1">
+  						<input type="text" class="form-control" required placeholder="Requester Name" id="RequestedBy" name="RequestedBy" aria-describedby="basic-addon1">
 					</div>
 		 		</div>
 		 		<div class="col-sm-2">

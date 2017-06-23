@@ -5,12 +5,6 @@
 	$MobileIDToEdit = $_GET['ID'];
 	$MobileToEdit = $db->query('SELECT * FROM mobile WHERE ID = '.$MobileIDToEdit);
 	
-	$FieldInfo = $db->query('SELECT ID, FieldType, FieldNumber FROM field ORDER BY FieldType ASC, FieldNumber ASC');
-	$AllField = $FieldInfo->fetchall(PDO::FETCH_ASSOC);
-	
-	$UserInfo = $db->query('SELECT ID, FirstName, LastName FROM users ORDER BY FirstName ASC');
-	$AllUsers = $UserInfo->fetchall(PDO::FETCH_ASSOC);
-	
 	foreach($MobileToEdit as $row)
 	{
 		$ID = $row['ID'];
@@ -28,33 +22,10 @@
 		$Status = $row['Status'];
 		$Notes = $row['Notes'];
 		
-	}	
-		
-	if (stripos($AssignedTo, "field") !== false) {
+	}
 	
-		$AssignedFieldID = substr($AssignedTo, 5);
-		$AssignedFieldUser = $db->query('SELECT ID, FieldType, FieldNumber FROM field WHERE ID = '.$AssignedFieldID);
-		$AssignedFieldName = $AssignedFieldUser->fetchall(PDO::FETCH_ASSOC);
-		
-		foreach ($AssignedFieldName as $field)
-		{
-			$AssignedToName = "$field[FieldType]$field[FieldNumber]";
-		}
+	include_once(INCLUDES ."assignedName.php");
 	
-	} elseif ($AssignedTo == "Open") {
-	
-		$AssignedToName = "Open";
-		
-	} else {
-	
-	$AssignedUser = $db->query('SELECT ID, FirstName, LastName FROM users WHERE ID = '.$AssignedTo);
-	$UserName = $AssignedUser->fetchall(PDO::FETCH_ASSOC);
-	
-		foreach($UserName as $name)
-		{
-			$AssignedToName = "$name[FirstName] $name[LastName]";
-		}
-	} 
 ?>
 
 <link href="/www/css/bootstrap.min.css" rel="stylesheet">
@@ -167,7 +138,7 @@
             		print "</select>";
 				} else {
 					print "<select select class='form-control' name='Status' id='Status'>";
-            		print "<option selected disabled>".$Status."</option>";
+            		print "<option selected disabled value='".$Status."'>".$Status."</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
             		print "<option value='Locked'>Locked</option>";

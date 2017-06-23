@@ -134,7 +134,7 @@
 			<label class="col-xs-3 control-label">Assigned To</label>
 			<div class="col-xs-5">
 				<?php
-				print "<select class='form-control' name='AssignedToID'>";
+				print "<select class='form-control' id='AssignedToID' name='AssignedToID'>";
 				print "<option selected disabled>".$AssignedToName."</option>";
 				print "<option value='Open'>Open</option>";
 				foreach ($AllUsers as $user) {
@@ -148,26 +148,24 @@
 			<label class="col-xs-3 control-label">Status</label>
 			<div class="col-xs-5">
 				<?php
-				if ($Status == '' ){
-					print "<select class='form-control' name='Status' id='Status'>";
-					print "<option selected>Choose Status...</option>";
-					print "<option value='New in box'>New in box</option>";
-					print "<option value='Available'>Available</option>";
-					print "<option value='Assinged'>Assigned</option>";
-					print "<option value='On hold'>On hold</option>";
-					print "<option value='Damaged'>Damaged</option>";
-					print "<option value='To recycle'>To recycle</option>";
-					print "</select>";
+				if( (isset($Status)) and ($Status !== NULL) and ($Status !== '') ){
+					print "<select select class='form-control' name='Status' id='Status'>";
+            		print "<option selected disabled value='".$Status."'>".$Status."</option>";
+            		print "<option value='New in box'>New in box</option>";
+            		print "<option value='Available'>Available</option>";
+            		print "<option value='On Hold'>On Hold</option>";
+            		print "<option value='Damaged'>Damaged</option>";
+            		print "<option value='To Recycle'>To Recycle</option>";
+            		print "</select>";
 				} else {
-					print "<select class='form-control' name='Status' id='Status'>";
-					print "<option selected>".$Status."</option>";
-					print "<option value='New in box'>New in box</option>";
-					print "<option value='Available'>Available</option>";
-					print "<option value='Assinged'>Assigned</option>";
-					print "<option value='On hold'>On hold</option>";
-					print "<option value='Damaged'>Damaged</option>";
-					print "<option value='To recycle'>To recycle</option>";
-					print "</select>";
+					print "<select select class='form-control' name='Status' id='Status'>";
+            		print "<option selected value='Available'>Choose Status...</option>";
+            		print "<option value='New in box'>New in box</option>";
+            		print "<option value='Available'>Available</option>";
+            		print "<option value='On Hold'>On Hold</option>";
+            		print "<option value='Damaged'>Damaged</option>";
+            		print "<option value='To Recycle'>To Recycle</option>";
+            		print "</select>";
 				}
 			?>
 			</div>

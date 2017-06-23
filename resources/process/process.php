@@ -258,20 +258,18 @@ if( isset($_POST['UpdateComputer']) ) {
 	$WiFiMAC = $_POST['WiFiMAC'];
 	$PurchaseDate = $_POST['PurchaseDate'];
 	$PurchasePrice = $_POST['PurchasePrice'];
+	$AssignedTo = $_POST['AssignedToID'];
+	$Status = $_POST['Status'];
+	$Notes = $_POST['Notes'];
 	
-	if( isset($_POST['AssignedToID']) ){
-		$AssignedTo = $_POST['AssignedToID'];
+	if( (isset($AssignedTo)) and ($AssignedTo !== "Open") ){
+		$Status = "Assigned";
+		$db->exec("UPDATE OR REPLACE computers SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
+	} elseif( (isset($AssignedTo)) and ($AssignedTo == "Open") ){
 		$db->exec("UPDATE OR REPLACE computers SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
 	}
 	
-	if( isset($_POST['Status']) ){
-		$Status = $_POST['Status'];
-		$db->exec("UPDATE OR REPLACE computers SET Status = '$Status' WHERE ID = '$ID'");
-	}
-	
-	$Notes = $_POST['Notes'];
-	
-	$db->exec("UPDATE OR REPLACE computers SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', EthernetMAC = '$EthernetMAC', WiFiMAC = '$WiFiMAC', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Notes = '$Notes' WHERE ID = '$ID'");
+	$db->exec("UPDATE OR REPLACE computers SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', EthernetMAC = '$EthernetMAC', WiFiMAC = '$WiFiMAC', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Status = '$Status', Notes = '$Notes' WHERE ID = '$ID'");
 	
 	header("Location: ../../index.php?page=hardware/allcomputers");
 	$db = NULL;
@@ -374,20 +372,17 @@ if( isset($_POST['UpdateAccessory']) ) {
 	$EthernetMAC = $_POST['EthernetMAC'];
 	$PurchaseDate = $_POST['PurchaseDate'];
 	$PurchasePrice = $_POST['PurchasePrice'];
+	$Status = $_POST['Status'];
 	
 	if( isset($_POST['AssignedToID']) ){
 		$AssignedTo = $_POST['AssignedToID'];
+		$Status = "Assigned";
 		$db->exec("UPDATE OR REPLACE accessories SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
-	}
-
-	if( isset($_POST['Status']) ){
-		$Status = $_POST['Status'];
-		$db->exec("UPDATE OR REPLACE accessories SET Status = '$Status' WHERE ID = '$ID'");
 	}
 	
 	$Notes = $_POST['Notes'];
 	
-	$db->exec("UPDATE OR REPLACE accessories SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', Description = '$Description', EthernetMAC = '$EthernetMAC', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Notes = '$Notes' WHERE ID = '$ID'");
+	$db->exec("UPDATE OR REPLACE accessories SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', Description = '$Description', EthernetMAC = '$EthernetMAC', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Status = '$Status', Notes = '$Notes' WHERE ID = '$ID'");
 	
 	header("Location: ../../index.php?page=hardware/allaccessories");
 	$db = NULL;

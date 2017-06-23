@@ -49,33 +49,29 @@
 					print "<td>".$row['PhoneNumber']."</td>";
 					print "<td>".$row['PurchasePrice']."</td>";
 					
-					if( strpos($row['AssignedTo'], 'field') !== false) {
+					if( $row['AssignedTo'] == "Open" ){
+						print "<td>".$row['AssignedTo']."</td>";
+					} elseif ( strpos($row['AssignedTo'], 'field') !== false) {
 						$FieldID = substr($row['AssignedTo'], 5);
 						$FieldFullName = $db->query('SELECT FieldType, FieldNumber FROM field WHERE ID = '.$FieldID);
 						$FieldWithNumber = $FieldFullName->fetchall(PDO::FETCH_ASSOC);
 						foreach( $FieldWithNumber as $field ){
 							print "<td>".$field['FieldType'].$field['FieldNumber']."</td>";
 						}
-					} elseif( is_numeric($row['AssignedTo']) ) {
-						$UserFullName = $db->query('SELECT FirstName, LastName FROM users WHERE ID = '.$row['ID']);
-						$UserName = $UserFullName->fetchall(PDO::FETCH_ASSOC);
-						foreach( $UserName as $name ){
+					} elseif ( is_numeric($row['AssignedTo']) ) {
+						$AllNames = $db->query('SELECT FirstName, LastName FROM users WHERE ID = '.$row['AssignedTo']);
+						$FirstNameLastName = $AllNames->fetchall(PDO::FETCH_ASSOC);
+						foreach( $FirstNameLastName as $name ){
 							print "<td>".$name['FirstName']." ".$name['LastName']."</td>";
 						}
 					} else {
-						print "<td>".$row['AssignedTo']."</td>";
+						print "<td>Error</td>";
 					}
 					
-					if( ($row['Status'] == NULL) or ($row['Status'] == '') ) {
-						print "<td></td>";
-					} else {
-						print "<td>".$row['Status']."</td>";
-					}
+					print "<td>".$row['Status']."</td>";
 					print "<td>".$row['Notes']."</td>";
-				}
-				
-				print "</tr>";
-					
+					print "</tr>";
+				}	
 				}
 			?>
 			</tbody>

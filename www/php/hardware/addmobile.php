@@ -2,6 +2,18 @@
 
 <script type="text/javascript" src="/www/js/jquery-validation/dist/jquery.validate.min.js"></script>
 
+<?php
+
+	$db = new PDO('sqlite:../../../db/Inventory.db');
+
+	$FieldInfo = $db->query('SELECT ID, FieldType, FieldNumber FROM field ORDER BY FieldType ASC, FieldNumber ASC');
+	$AllField = $FieldInfo->fetchall(PDO::FETCH_ASSOC);
+	
+	$UserInfo = $db->query('SELECT ID, FirstName, LastName FROM users ORDER BY FirstName ASC');
+	$AllUsers = $UserInfo->fetchall(PDO::FETCH_ASSOC);
+
+?>
+
 <div class="modal-header">
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 <h4 class="modal-title">Add New Mobile Device</h4>
@@ -79,19 +91,30 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Assigned To</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control" id="AssignedTo" name="AssignedTo" />
+				<?php
+				print "<select class='form-control' name='AssignedToID' id='AssignedToID'>";
+				print "<option selected disabled value='Open'>Assigned To...</option>";
+				print "<option value='Open'>Open</option>";
+				foreach ($AllUsers as $user) {
+					print "<option value='".$user['ID']."'>".$user['FirstName']." ".$user['LastName']."</option>";
+				}
+				foreach ($AllField as $field) {
+					print "<option value='field".$field['ID']."'>".$field['FieldType'].$field['FieldNumber']."</option>";
+				}
+				print "</select>";
+				?>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Status</label>
 			<div class="col-xs-5">
 				<select class="form-control" id="Status" name="Status">
-				<option selected>Choose Status...</option>
-				<option>Available</option>
-				<option>Locked</option>
-				<option>Suspended</option>
-				<option>Damaged</option>
-				<option>Lost/Stolen</option>
+				<option selected>Available</option>
+				<option value="New in box">New in box</option>
+				<option value="Assinged">Assigned</option>
+				<option value="On hold">On hold</option>
+				<option value="Damaged">Damaged</option>
+				<option value="To recycle">To recycle</option>
 				</select>
 			</div>
 		</div>

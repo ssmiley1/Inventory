@@ -86,11 +86,6 @@
               </ul>
             </li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Account</a></li>
-            <li><a href="#">Sign Out</a></li>
-          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
