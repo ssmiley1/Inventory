@@ -262,10 +262,13 @@ if( isset($_POST['UpdateComputer']) ) {
 	$Status = $_POST['Status'];
 	$Notes = $_POST['Notes'];
 	
-	if( (isset($AssignedTo)) and ($AssignedTo !== "Open") ){
+	if( is_numeric($AssignedTo) ){
 		$Status = "Assigned";
 		$db->exec("UPDATE OR REPLACE computers SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
-	} elseif( (isset($AssignedTo)) and ($AssignedTo == "Open") ){
+	} elseif( $AssignedTo == "Open" ){
+		if( $Status == "Assigned" ){
+			$Status = "Available";
+		}
 		$db->exec("UPDATE OR REPLACE computers SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
 	}
 	

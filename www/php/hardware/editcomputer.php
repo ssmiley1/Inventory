@@ -150,7 +150,7 @@
 				<?php
 				if( (isset($Status)) and ($Status !== NULL) and ($Status !== '') ){
 					print "<select select class='form-control' name='Status' id='Status'>";
-            		print "<option selected disabled value='".$Status."'>".$Status."</option>";
+            		print "<option selected value='".$Status."'>".$Status."</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
             		print "<option value='On Hold'>On Hold</option>";
