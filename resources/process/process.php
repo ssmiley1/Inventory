@@ -8,10 +8,10 @@ if( isset($_POST['DeleteUser']) ) {
 	$UserToDelete = $_POST['DeleteUser'];
 	$db->exec("DELETE FROM users WHERE ID = '$UserToDelete'");
 	
-	$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = 'Open' WHERE AssignedTo = '$UserToDelete'");
-	$db->exec("UPDATE OR REPLACE computers SET AssignedTo = 'Open' WHERE AssignedTo = '$UserToDelete'");
-	$db->exec("UPDATE OR REPLACE accessories SET AssignedTo = 'Open' WHERE AssignedTo = '$UserToDelete'");
-	$db->exec("UPDATE OR REPLACE software SET AssignedTo = 'Open' WHERE AssignedTo = '$UserToDelete'");
+	$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = 'Open' AND SET Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
+	$db->exec("UPDATE OR REPLACE computers SET AssignedTo = 'Open' AND SET Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
+	$db->exec("UPDATE OR REPLACE accessories SET AssignedTo = 'Open' AND SET Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
+	$db->exec("UPDATE OR REPLACE software SET AssignedTo = 'Open' AND SET Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
 
 	header("Location: ../../index.php?page=users/allusershe");
 	$db = NULL;
@@ -20,9 +20,9 @@ if( isset($_POST['DeleteUser']) ) {
 
 if( isset($_POST['AddUser']) ) {
 	
-	$FirstName = $_POST['FirstName'];
-	$LastName = $_POST['LastName'];
-	$ADAccount = $_POST['ADAccount'];
+	$FirstName = ucfirst($_POST['FirstName']);
+	$LastName = ucfirst($_POST['LastName']);
+	$ADAccount = strtolower($_POST['ADAccount']);
 	$Email = $_POST['Email'];
 	$DeskPhone = $_POST['DeskPhone'];
 	$StartDate = $_POST['StartDate'];
@@ -40,9 +40,9 @@ if( isset($_POST['AddUser']) ) {
 if( isset($_POST['UpdateUser']) ) {
 	
 	$ID = $_POST['UpdateUser'];
-	$FirstName = $_POST['FirstName'];
-	$LastName = $_POST['LastName'];
-	$ADAccount = $_POST['ADAccount'];
+	$FirstName = ucfirst($_POST['FirstName']);
+	$LastName = ucfirst($_POST['LastName']);
+	$ADAccount = strtolower($_POST['ADAccount']);
 	$Email = $_POST['Email'];
 	$DeskPhone = $_POST['DeskPhone'];
 	$StartDate = $_POST['StartDate'];
@@ -148,11 +148,12 @@ if( isset($_POST['AddMobile']) ) {
 	
 	if( isset($_POST['AssignedToID']) ){
 		$AssignedTo = $_POST['AssignedToID'];
+		$Status = "Assigned";
 	} else {
 		$AssignedTo = "Open";
+		$Status = $_POST['Status'];
 	}
 	
-	$Status = $_POST['Status'];
 	$Notes = $_POST['Notes'];
 
 	$db->exec("INSERT INTO mobile (Make, Model, SerialNumber, IMEI, ICCID, Carrier, PhoneNumber, PurchaseDate, PurchasePrice, AssignedTo, Status, Notes) VALUES ('$Make', '$Model', '$SerialNumber', '$IMEI', '$ICCID', '$Carrier', '$PhoneNumber', '$PurchaseDate', '$PurchasePrice', '$AssignedTo', '$Status', '$Notes');");
@@ -183,12 +184,10 @@ if( isset($_POST['UpdateMobile']) ) {
 	
 	if( isset($_POST['AssignedToID']) ){
     	$AssignedTo = $_POST['AssignedToID'];
-    	$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
-	}
-	
-	if( isset($_POST['Status'])){
-    	$Status = $_POST['Status'];
-    	$db->exec("UPDATE OR REPLACE mobile SET Status = '$Status' WHERE ID = '$ID'");
+    	$Status = "Assigned";
+	} else {
+		$AssignedTo = "Open";
+		$Status = "Available";
 	}
 	
 	if( isset($_POST['Notes'])){
@@ -198,7 +197,7 @@ if( isset($_POST['UpdateMobile']) ) {
 	
 	
 	
-	$db->exec("UPDATE OR REPLACE mobile SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', IMEI = '$IMEI', ICCID = '$ICCID', PhoneNumber = '$PhoneNumber', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice' WHERE ID = '$ID'");
+	$db->exec("UPDATE OR REPLACE mobile SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', IMEI = '$IMEI', ICCID = '$ICCID', PhoneNumber = '$PhoneNumber', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', AssignedTo = '$AssignedTo', Status = '$Status' WHERE ID = '$ID'");
 	
 	header("Location: ../../index.php?page=hardware/allmobile");
 	$db = NULL;

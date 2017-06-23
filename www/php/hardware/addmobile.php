@@ -24,7 +24,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Asset Tag</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control required" id="AssetTag" name="AssetTag">
+				<input type="text" class="form-control" id="AssetTag" name="AssetTag">
 			</div>
 		</div>
 		<div class="form-group">
@@ -36,13 +36,13 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">IMEI</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control required" id="IMEI" name="IMEI">
+				<input type="text" class="form-control" id="IMEI" name="IMEI">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label">ICCID</label>
 			<div class="col-xs-5">
-				<input type="text" class="form-control required" id="ICCID" name="ICCID">
+				<input type="text" class="form-control" id="ICCID" name="ICCID">
 			</div>
 		</div>
 		<div class="form-group">
@@ -155,6 +155,19 @@
   					Table: "mobile"
   				}
   			}
+  		},
+  		AssetTag: {
+  			required: false,
+  			remote: {
+  				url: "/resources/process/validate.php",
+  				type: "post",
+  				data: {
+  					AssetTag: function() {
+  						return $("#AssetTag").val();
+  					},
+  					Table: "mobile"
+  				}
+  			}
   		}
   	},
   	messages: {
@@ -165,7 +178,6 @@
   			required: "Model is required."
   		},
   		AssetTag: {
-  			required: "Asset tag required.",
   			digits: "Please enter digits only.",
   			min: "Asset tag must be more than 4 digits.",
   			remote: "Asset tag already exists."

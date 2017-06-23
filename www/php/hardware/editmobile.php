@@ -5,7 +5,7 @@
 	$MobileIDToEdit = $_GET['ID'];
 	$MobileToEdit = $db->query('SELECT * FROM mobile WHERE ID = '.$MobileIDToEdit);
 	
-	$FieldInfo = $db->query('SELECT ID, FieldType, FieldNumber FROM field ORDER BY FieldNumber ASC');
+	$FieldInfo = $db->query('SELECT ID, FieldType, FieldNumber FROM field ORDER BY FieldType ASC, FieldNumber ASC');
 	$AllField = $FieldInfo->fetchall(PDO::FETCH_ASSOC);
 	
 	$UserInfo = $db->query('SELECT ID, FirstName, LastName FROM users ORDER BY FirstName ASC');
@@ -144,6 +144,9 @@
 				print "<option value='Open'>Open</option>";
 				foreach ($AllUsers as $user) {
 					print "<option value='".$user['ID']."'>".$user['FirstName']." ".$user['LastName']."</option>";
+				}
+				foreach ($AllField as $field) {
+					print "<option value='field".$field['ID']."'>".$field['FieldType'].$field['FieldNumber']."</option>";
 				}
 				print "</select>";
 				?>
