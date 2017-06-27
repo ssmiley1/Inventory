@@ -94,9 +94,6 @@
 			return $field.parent().next('.messageContainer');
 		}
 	},
-	groups: {
-		username: "FirstName LastName"
-  		},
 	rules: {
   		FirstName: {
   			required: true

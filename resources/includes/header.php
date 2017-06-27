@@ -83,6 +83,7 @@
                 <li><a href="#">Computer Report</a></li>
                 <li><a href="#">Mobile Report</a></li>
                 <li><a href="#">Accessory Report</a></li>
+                <li><a href="index.php?page=/reports/xeroxreport" id="xeroxreport">Xerox Report</a></li>
               </ul>
             </li>
           </ul>

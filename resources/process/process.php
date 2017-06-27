@@ -172,32 +172,30 @@ if( isset($_POST['UpdateMobile']) ) {
 	$AssetTag = $_POST['AssetTag'];
 	$IMEI = $_POST['IMEI'];
 	$ICCID = $_POST['ICCID'];
+	$PhoneNumber = $_POST['PhoneNumber'];
+	$PurchaseDate = $_POST['PurchaseDate'];
+	$PurchasePrice = $_POST['PurchasePrice'];
+	$Status = $_POST['Status'];
 	
 	if(trim($_POST['Carrier']) !== ""){
     	$Carrier = $_POST['Carrier'];
     	$db->exec("UPDATE OR REPLACE mobile SET Carrier = '$Carrier' WHERE ID = '$ID'");
 	}
 	
-	$PhoneNumber = $_POST['PhoneNumber'];
-	$PurchaseDate = $_POST['PurchaseDate'];
-	$PurchasePrice = $_POST['PurchasePrice'];
-	
-	if( isset($_POST['AssignedToID']) ){
-    	$AssignedTo = $_POST['AssignedToID'];
-    	$Status = "Assigned";
-	} else {
-		$AssignedTo = "Open";
-		$Status = "Available";
-	}
-	
-	if( isset($_POST['Notes'])){
-    	$Notes = $_POST['Notes'];
-    	$db->exec("UPDATE OR REPLACE mobile SET Notes = '$Notes' WHERE ID = '$ID'");
+	if( isset($AssignedTo) ){
+		if( is_numeric($AssignedTo) ){
+			$Status = "Assigned";
+		}elseif( $AssignedTo == "Open" ){
+			if( $Status == "Assigned" ){
+				$Status = "Available";
+				}
+			}
+		$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
 	}
 	
 	
 	
-	$db->exec("UPDATE OR REPLACE mobile SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', IMEI = '$IMEI', ICCID = '$ICCID', PhoneNumber = '$PhoneNumber', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', AssignedTo = '$AssignedTo', Status = '$Status' WHERE ID = '$ID'");
+	$db->exec("UPDATE OR REPLACE mobile SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', IMEI = '$IMEI', ICCID = '$ICCID', PhoneNumber = '$PhoneNumber', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Status = '$Status' WHERE ID = '$ID'");
 	
 	header("Location: ../../index.php?page=hardware/allmobile");
 	$db = NULL;
@@ -262,15 +260,17 @@ if( isset($_POST['UpdateComputer']) ) {
 	$Status = $_POST['Status'];
 	$Notes = $_POST['Notes'];
 	
-	if( is_numeric($AssignedTo) ){
-		$Status = "Assigned";
-		$db->exec("UPDATE OR REPLACE computers SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
-	} elseif( $AssignedTo == "Open" ){
-		if( $Status == "Assigned" ){
-			$Status = "Available";
-		}
+	if( isset($AssignedTo) ){
+		if( is_numeric($AssignedTo) ){
+			$Status = "Assigned";
+		}elseif( $AssignedTo == "Open" ){
+			if( $Status == "Assigned" ){
+				$Status = "Available";
+				}
+			}
 		$db->exec("UPDATE OR REPLACE computers SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
 	}
+		
 	
 	$db->exec("UPDATE OR REPLACE computers SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', EthernetMAC = '$EthernetMAC', WiFiMAC = '$WiFiMAC', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Status = '$Status', Notes = '$Notes' WHERE ID = '$ID'");
 	
@@ -377,9 +377,14 @@ if( isset($_POST['UpdateAccessory']) ) {
 	$PurchasePrice = $_POST['PurchasePrice'];
 	$Status = $_POST['Status'];
 	
-	if( isset($_POST['AssignedToID']) ){
-		$AssignedTo = $_POST['AssignedToID'];
-		$Status = "Assigned";
+	if( isset($AssignedTo) ){
+		if( is_numeric($AssignedTo) ){
+			$Status = "Assigned";
+		}elseif( $AssignedTo == "Open" ){
+			if( $Status == "Assigned" ){
+				$Status = "Available";
+				}
+			}
 		$db->exec("UPDATE OR REPLACE accessories SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
 	}
 	
