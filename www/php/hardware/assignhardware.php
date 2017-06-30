@@ -23,7 +23,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Assign To</label>
 			<div class="col-xs-4">
-				<select class="form-control" name="AssignedToID" id="AssignedToID" autofocus>
+				<select class="form-control" name="AssignedToID" id="AssignedToID" autofocus required>
 				<option selected disabled value="Open">Choose User...</option>
 				<option value="Open">Open</option>
 				<?php
@@ -39,37 +39,37 @@
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="AssetTag1">Asset Tag</label>
-			<div class="col-xs-2">
+			<div class="col-xs-4">
 				<input type="text" class="form-control" id="AssetTag1" name="AssetTag1" required/>
 			</div> 
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="AssetTag2">Asset Tag</label>
-			<div class="col-xs-2">
+			<div class="col-xs-4">
 				<input type="text" class="form-control" id="AssetTag2" name="AssetTag2" />
 			</div> 
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="AssetTag3">Asset Tag</label>
-			<div class="col-xs-2">
+			<div class="col-xs-4">
 				<input type="text" class="form-control" id="AssetTag3" name="AssetTag3" />
 			</div> 
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="AssetTag4">Asset Tag</label>
-			<div class="col-xs-2">
+			<div class="col-xs-4">
 				<input type="text" class="form-control" id="AssetTag4" name="AssetTag4" />
 			</div> 
 		</div>
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="AssetTag5">Asset Tag</label>
-			<div class="col-xs-2">
+			<div class="col-xs-4">
 				<input type="text" class="form-control" id="AssetTag5" name="AssetTag5" />
 			</div> 
 		</div>
 		<div class="form-group">
 			<div class="col-xs-5 col-xs-offset-3">
-				<button type="submit" class="btn btn-success pull-right" name="Assign">Assign</button>
+				<button type="submit" class="btn btn-success pull-right" name="AssignEquipment">Assign</button>
 			</div>
 		</div>
 	</form>
@@ -100,29 +100,115 @@
 		}
 	},
   	rules: {
+  		AssignedToID: {
+  			required: true
+  		},
   		AssetTag1: {
   			required: true,
   			digits: true,
   			minlength: 4,
+  			maxlength: 6,
   			remote: {
   				url: "/resources/process/validate.php",
   				type: "post",
   				data: {
-  					AssetTag: function() {
+  					AssetTagAssign: function() {
   						return $("#AssetTag1").val();
-  					},
-  					Table: "computers"
+  					}
   				}
   			}
-  		}
+  		},
+  		AssetTag2: {
+  			digits: true,
+  			minlength: 4,
+  			maxlength: 6,
+  			remote: {
+  				url: "/resources/process/validate.php",
+  				type: "post",
+  				data: {
+  					AssetTagAssign: function() {
+  						return $("#AssetTag2").val();
+  					}
+  				}
+  			}
+  		},
+  		AssetTag3: {
+  			digits: true,
+  			minlength: 4,
+  			maxlength: 6,
+  			remote: {
+  				url: "/resources/process/validate.php",
+  				type: "post",
+  				data: {
+  					AssetTagAssign: function() {
+  						return $("#AssetTag3").val();
+  					}
+  				}
+  			}
+  		},
+  		AssetTag4: {
+  			digits: true,
+  			minlength: 4,
+  			maxlength: 6,
+  			remote: {
+  				url: "/resources/process/validate.php",
+  				type: "post",
+  				data: {
+  					AssetTagAssign: function() {
+  						return $("#AssetTag4").val();
+  					}
+  				}
+  			}
+  		},
+  		AssetTag5: {
+  			digits: true,
+  			minlength: 4,
+  			maxlength: 6,
+  			remote: {
+  				url: "/resources/process/validate.php",
+  				type: "post",
+  				data: {
+  					AssetTagAssign: function() {
+  						return $("#AssetTag5").val();
+  					}
+  				}
+  			}
+  		},
   	},
+  	success: function(element) {
+		$(element).closest('.form-group').addClass('has-success');
+    },
   	messages: {
+  		AssignedToID: {
+  			required: "User required."
+  		},
   		AssetTag1: {
   			required: "Asset Tag required.",
   			digits: "Requires digits only.",
-  			minlength: "4 digits minimun.",
-  			remote: "Already exists."
+  			minlength: "4 digits minimum.",
+  			maxlength: "6 digits maximum.",
+  		},
+  		AssetTag2: {
+  			digits: "Requires digits only.",
+  			minlength: "4 digits minimum.",
+  			maxlength: "6 digits maximum.",
+  		},
+  		AssetTag3: {
+  			digits: "Requires digits only.",
+  			minlength: "4 digits minimum.",
+  			maxlength: "6 digits maximum.",
+  		},
+  		AssetTag4: {
+  			digits: "Requires digits only.",
+  			minlength: "4 digits minimum.",
+  			maxlength: "6 digits maximum.",
+  		},
+  		AssetTag5: {
+  			digits: "Requires digits only.",
+  			minlength: "4 digits minimum.",
+  			maxlength: "6 digits maximum.",
   		}
+  	}
   });
   
   $(".modal").on("hidden.bs.modal", function(){

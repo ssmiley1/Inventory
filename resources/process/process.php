@@ -488,6 +488,22 @@ if( isset($_POST['UpdateSoftware']) ) {
 	$db = NULL;
 }
 
+if( isset($_POST['AssignEquipment']) ){
+
+	$AssetTags = array($_POST['AssetTag1'], $_POST['AssetTag2'], $_POST['AssetTag3'], $_POST['AssetTag4'], $_POST['AssetTag5']);
+	$AssignTo = $_POST['AssignedToID'];
+	
+	foreach( $AssetTags as $AssetTag ){
+		if( (isset($AssetTag)) and ($AssetTag != '') and ($AssetTag != NULL) ){
+			$db->exec("UPDATE OR REPLACE computers SET AssignedTo = '$AssignTo' WHERE AssetTag = '$AssetTag'");
+			$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = '$AssignTo' WHERE AssetTag = '$AssetTag'");
+			$db->exec("UPDATE OR REPLACE accessories SET AssignedTo = '$AssignTo' WHERE AssetTag = '$AssetTag'");
+		}
+	}
+
+	header("Location: ../../index.php?page=users/allusershe");
+	$db = NULL;
+}
 
 if( isset($_POST['DeleteStore']) ) {
 	
@@ -513,44 +529,5 @@ if( isset($_POST['UpdateStore']) ) {
 	
 }
 
-if( isset($_POST['CancelUser']) ) {
-	header("Location: ../index.php");
-	$db = NULL;
-}
-
-if( isset($_POST['CancelFieldUser']) ) {
-	header("Location: ../index.php");
-	$db = NULL;
-}
-
-if( isset($_POST['CancelMobile']) ) {
-	header("Location: ../index.php");
-	$db = NULL;
-}
-
-if( isset($_POST['CancelComputer']) ) {
-	header("Location: ../index.php");
-	$db = NULL;
-}
-
-if( isset($_POST['CancelAccessory']) ) {
-	header("Location: ../index.php");
-	$db = NULL;
-}
-
-if( isset($_POST['CancelSoftware']) ) {
-	header("Location: ../index.php");
-	$db = NULL;
-}
-
-if( isset($_POST['CancelStore']) ) {
-	header("Location: ../index.php");
-	$db = NULL;
-}
-
-if( isset($_POST['CancelPrinter']) ) {
-	header("Location: ../index.php");
-	$db = NULL;
-}
 
 ?>
