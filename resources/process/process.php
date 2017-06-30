@@ -1,5 +1,13 @@
 <?php
 
+function Sanitize($ToClean){
+	$ToClean = trim($ToClean);
+	$ToClean = htmlspecialchars($ToClean);
+	$ToClean = strip_tags($ToClean);
+	
+	return $ToClean;
+}
+
 //open the database
 $db = new PDO('sqlite:../../db/Inventory.db');
 
@@ -494,6 +502,10 @@ if( isset($_POST['AssignEquipment']) ){
 	$AssignTo = $_POST['AssignedToID'];
 	
 	foreach( $AssetTags as $AssetTag ){
+		// Chop the asset tag down to 4 digits. Ignore leading 0's if asset tag is scanned.
+		if( strlen($AssetTag) > 4){
+			$AssetTag = substr($AssetTag, -4);
+		}
 		if( (isset($AssetTag)) and ($AssetTag != '') and ($AssetTag != NULL) ){
 			$db->exec("UPDATE OR REPLACE computers SET AssignedTo = '$AssignTo' WHERE AssetTag = '$AssetTag'");
 			$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = '$AssignTo' WHERE AssetTag = '$AssetTag'");
