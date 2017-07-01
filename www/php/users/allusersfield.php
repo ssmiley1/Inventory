@@ -1,7 +1,7 @@
 <?php include(INCLUDES ."activateDatatable.php"); ?>
 
 <body>
-<div class="container-fluid hidden-print">
+<div class="container-fluid">
 	<h3>All Field Users</h3>
 	<table id="datatable" class="table table-sm table-bordered table-striped table-hover display nowrap" width="100%" style="font-size:15px">
 		<thead>
