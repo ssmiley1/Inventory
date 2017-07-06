@@ -60,6 +60,7 @@
                 <li><a data-toggle="modal" href="/www/php/hardware/addcomputer.php" data-target="#modal">Add Computer</a></li>
                 <li><a data-toggle="modal" href="/www/php/hardware/addmobile.php" data-target="#modal">Add Mobile</a></li>
                 <li><a data-toggle="modal" href="/www/php/hardware/addaccessory.php" data-target="#modal">Add Accessory</a></li>
+                <li><a data-toggle="modal" href="/www/php/hardware/addprinter.php" data-target="#modal">Add Printer</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Assign Hardware</li>
                 <li><a data-toggle="modal" href="/www/php/hardware/assignhardware.php" data-target="#modal">Assign Hardware</a></li>

@@ -304,17 +304,8 @@ if( isset($_POST['UpdateStore']) ) {
 	
 }
 
-if( isset($_POST['DeletePrinter']) ) {
-	$PrinterToDelete = $_POST['DeletePrinter'];
-	$db->exec("Delete FROM printers WHERE ID = '$PrinterToDelete'");
-	
-	header("Location: ../../index.php?page=hardware/allprinters");
-	$db = NULL;
-}
+if( isset($_POST['AddPrinter']) ){
 
-if( isset($_POST['UpdatePrinter']) ) {
-	
-	$ID = $_POST['UpdatePrinter'];
 	$Make = $_POST['Make'];
 	$Model = $_POST['Model'];
 	$SerialNumber = $_POST['SerialNumber'];
@@ -324,19 +315,18 @@ if( isset($_POST['UpdatePrinter']) ) {
 	$MACAddress = $_POST['MACAddress'];
 	$Notes = $_POST['Notes'];
 	
-	$db->exec("UPDATE OR REPLACE printers SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', PrinterName = '$PrinterName', Location = '$Location', IPAddress = '$IPAddress', MACAddress = '$MACAddress', Notes = '$Notes' WHERE ID = '$ID'");
-
+	$db->exec("INSERT INTO printers (Make, Model, SerialNumber, PrinterName, Location, IPAddress, MACAddress, Notes) VALUES ('$Make', '$Model', '$SerialNumber', '$PrinterName', '$Location', '$IPAddress', '$MACAddress', '$Notes');");
+	
 	header("Location: ../../index.php?page=hardware/allprinters");
 	$db = NULL;
 	
 }
 
-if( isset($_POST['DeleteAccessory']) ) {
-
-	$AccessoryToDelete = $_POST['DeleteAccessory'];
-	$db->exec("Delete FROM accessories WHERE ID = '$AccessoryToDelete'");
+if( isset($_POST['DeletePrinter']) ) {
+	$PrinterToDelete = $_POST['DeletePrinter'];
+	$db->exec("Delete FROM printers WHERE ID = '$PrinterToDelete'");
 	
-	header("Location: ../../index.php?page=hardware/allaccessories");
+	header("Location: ../../index.php?page=hardware/allprinters");
 	$db = NULL;
 }
 
@@ -365,6 +355,34 @@ if( isset($_POST['AddAccessory']) ) {
 	header("Location: ../../index.php?page=hardware/allaccessories");
 	$db = NULL;
 
+}
+
+if( isset($_POST['UpdatePrinter']) ) {
+	
+	$ID = $_POST['UpdatePrinter'];
+	$Make = $_POST['Make'];
+	$Model = $_POST['Model'];
+	$SerialNumber = $_POST['SerialNumber'];
+	$PrinterName = $_POST['PrinterName'];
+	$Location = $_POST['Location'];
+	$IPAddress = $_POST['IPAddress'];
+	$MACAddress = $_POST['MACAddress'];
+	$Notes = $_POST['Notes'];
+	
+	$db->exec("UPDATE OR REPLACE printers SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', PrinterName = '$PrinterName', Location = '$Location', IPAddress = '$IPAddress', MACAddress = '$MACAddress', Notes = '$Notes' WHERE ID = '$ID'");
+
+	header("Location: ../../index.php?page=hardware/allprinters");
+	$db = NULL;
+	
+}
+
+if( isset($_POST['DeleteAccessory']) ) {
+
+	$AccessoryToDelete = $_POST['DeleteAccessory'];
+	$db->exec("Delete FROM accessories WHERE ID = '$AccessoryToDelete'");
+	
+	header("Location: ../../index.php?page=hardware/allaccessories");
+	$db = NULL;
 }
 
 if( isset($_POST['UpdateAccessory']) ) {
