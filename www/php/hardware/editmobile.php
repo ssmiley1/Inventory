@@ -30,7 +30,31 @@
 		
 	}
 	
-	include_once(INCLUDES ."assignedName.php");
+	if (stripos($AssignedTo, "field") !== false) {
+	
+		$AssignedFieldID = substr($AssignedTo, 5);
+		$AssignedFieldUser = $db->query('SELECT ID, FieldType, FieldNumber FROM field WHERE ID = '.$AssignedFieldID);
+		$AssignedFieldName = $AssignedFieldUser->fetchall(PDO::FETCH_ASSOC);
+		
+		foreach ($AssignedFieldName as $field)
+		{
+			$AssignedToName = "$field[FieldType]$field[FieldNumber]";
+		}
+	
+	} elseif ($AssignedTo == "Open") {
+	
+		$AssignedToName = "Open";
+		
+	} else {
+	
+	$AssignedUser = $db->query('SELECT ID, FirstName, LastName FROM users WHERE ID = '.$AssignedTo);
+	$UserName = $AssignedUser->fetchall(PDO::FETCH_ASSOC);
+	
+		foreach($UserName as $name)
+		{
+			$AssignedToName = "$name[FirstName] $name[LastName]";
+		}
+	}
 	
 ?>
 
