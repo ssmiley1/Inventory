@@ -45,7 +45,7 @@
 					print "<td>".$row['PurchaseDate']."</td>";
 					print "<td>".$row['PurchasePrice']."</td>";
 		
-					if( $row['AssignedTo'] == "Open" ){
+					if( ($row['AssignedTo'] == "Open") or ($row['AssignedTo'] == "Available") ){
 						print "<td>".$row['AssignedTo']."</td>";
 					} elseif ( strpos($row['AssignedTo'], 'field') !== false) {
 						$FieldID = substr($row['AssignedTo'], 5);

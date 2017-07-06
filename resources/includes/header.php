@@ -69,10 +69,10 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Software <span class="caret"></span></a>
               <ul class="dropdown-menu">
               	<li class="dropdown-header">View Software</li>
-                <li><a href="#">All Software</a></li>
+                <li><a href="index.php?page=software/allsoftware">All Software</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Add Software</li>
-                <li><a href="#">Add Software</a></li>
+                <li><a data-toggle="modal" href="/www/php/software/addsoftware.php" data-target="#modal">Add Software</a></li>
               </ul>
             </li>
             <li class="dropdown">

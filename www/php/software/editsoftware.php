@@ -28,7 +28,7 @@
 		$Notes = $row['Notes'];
 	}
 	
-	if ($AssignedTo == "Open") {
+	if( ($AssignedTo == "Open") or ($AssignedTo == "Available") ) {
 	
 		$AssignedToName = "Open";
 		
@@ -41,10 +41,6 @@
 		{
 			$AssignedToName = "$name[FirstName] $name[LastName]";
 		}
-	}
-	
-	if( $AssignedTo !== "Open" ){
-		$Status = "Assigned";
 	}
 	
 ?>
@@ -124,7 +120,7 @@
 			<label class="col-xs-3 control-label">Assigned To</label>
 			<div class="col-xs-5">
 				<?php
-				print "<select class='form-control' name='AssignedToID' id='AssignedToID'>";
+				print "<select class='form-control' id='AssignedToID' name='AssignedToID'>";
 				print "<option selected disabled>".$AssignedToName."</option>";
 				print "<option value='Open'>Open</option>";
 				foreach ($AllUsers as $user) {
@@ -142,6 +138,7 @@
 					print "<select select class='form-control' name='Status' id='Status'>";
             		print "<option selected disabled>Choose Status...</option>";
             		print "<option value='Available'>Available</option>";
+            		print "<option value='Assigned'>Assigned</option>";
             		print "<option value='On Hold'>On Hold</option>";
             		print "<option value='Expired'>Expired</option>";
             		print "</select>";
@@ -149,6 +146,7 @@
 					print "<select select class='form-control' name='Status' id='Status'>";
             		print "<option selected disabled value='".$Status."'>".$Status."</option>";
             		print "<option value='Available'>Available</option>";
+            		print "<option value='Assigned'>Assigned</option>";
             		print "<option value='On Hold'>On Hold</option>";
             		print "<option value='Expired'>Expired</option>";
             		print "</select>";

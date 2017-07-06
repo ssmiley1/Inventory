@@ -438,21 +438,20 @@ if( isset($_POST['AddSoftware']) ) {
 	if( isset($_POST['AssignedTo']) ){
 		$AssignedTo = $_POST['AssignedTo'];
 	} else {
-		$AssignedTo = "Available";
+		$AssignedTo = "Open";
 	}
 	
 	if( isset($_POST['Status']) ){
 		$Status = $_POST['Status'];
 	} else {
-		$Status = "Open";
+		$Status = "Available";
 	}
 	
 	$Notes = $_POST['Notes'];
 
 	$db->exec("INSERT INTO software (SoftwareDeveloper, SoftwareName, Version, SerialKey, LicenseType, DeviceLimit, Category, WebSite, PurchaseDate, PurchasePrice, ExpirationDate, Vendor, AssignedTo, Status, Notes) VALUES ('$SoftwareDeveloper', '$SoftwareName', '$Version', '$SerialKey', '$LicenseType', '$DeviceLimit', '$Category', '$WebSite', '$PurchaseDate', '$PurchasePrice', '$ExpirationDate', '$Vendor', '$AssignedTo', '$Status', '$Notes');");
 	
-	header("Location: ../index.php");
-	
+	header("Location: ../../index.php?page=software/allsoftware");
 	$db = NULL;
 
 }
@@ -478,13 +477,13 @@ if( isset($_POST['UpdateSoftware']) ) {
 	$ExpirationDate = $_POST['ExpirationDate'];
 	$Vendor = $_POST['Vendor'];
 	
-	if( isset($_POST['AssignedToID']) ){
-		$AssignedTo = $_POST['AssignedToID'];
+	$AssignedTo = $_POST['AssignedToID'];
+	if( isset($AssignedTo) ){
 		$db->exec("UPDATE OR REPLACE software SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
 	}
-
-	if( isset($_POST['Status']) ){
-		$Status = $_POST['Status'];
+	
+	$Status = $_POST['Status'];
+	if( isset($Status) ){
 		$db->exec("UPDATE OR REPLACE software SET Status = '$Status' WHERE ID = '$ID'");
 	}
 	
@@ -492,7 +491,7 @@ if( isset($_POST['UpdateSoftware']) ) {
 	
 	$db->exec("UPDATE OR REPLACE software SET SoftwareDeveloper = '$SoftwareDeveloper', SoftwareName = '$SoftwareName', Version = '$Version', SerialKey = '$SerialKey', DeviceLimit = '$DeviceLimit', Category = '$Category', WebSite = '$WebSite', Vendor = '$Vendor', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Notes = '$Notes' WHERE ID = '$ID'");
 	
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=software/allsoftware");
 	$db = NULL;
 }
 
