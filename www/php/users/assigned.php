@@ -1,5 +1,7 @@
 <link href="/www/css/bootstrap.min.css" rel="stylesheet">
 
+<link href="/www/css/bootstrap.min.css" rel="stylesheet">
+
 <?php 
 
 	$db = new PDO('sqlite:../../../db/Inventory.db');
@@ -15,6 +17,10 @@
 	$AssignedComputers = $db->query("SELECT Make, Model, SerialNumber, AssetTag FROM computers WHERE AssignedTo = '$UserID'");
 	$AssignedMobile = $db->query("SELECT Make, Model, SerialNumber, AssetTag FROM mobile WHERE AssignedTo = '$UserID'");
 	$AssignedAccessories = $db->query("SELECT Make, Model, SerialNumber, AssetTag, Description FROM accessories WHERE AssignedTo = '$UserID'");
+	$AssignedSoftware = $db->query("SELECT SoftwareDeveloper, SoftwareName, Version, SerialKey FROM software WHERE AssignedTo = '$UserID'");
+
+	
+	
 
 ?>
 
@@ -22,6 +28,7 @@
 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 <h4 class="modal-title">Equipment assigned to <?php echo $FullName; ?></h4>
 </div>
+
 	<div class="modal-body">
 		<div class="panel panel-default" style="width:100%">
 			<div class="panel-heading" style="text-align:left">Computers</div>
@@ -102,6 +109,35 @@
 								print "<td>".$accessory['SerialNumber']."</td>";
 								print "<td>".$accessory['Description']."</td>";
 								print "<td>".$accessory['AssetTag']."</td>";
+								print "</tr>";
+							}
+						?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal-body">
+		<div class="panel panel-default" style="width:100%">
+			<div class="panel-heading" style="text-align:left">Software</div>
+				<table class="table table-sm">
+					<thead>
+						<tr>
+							<th>Developer</th>
+							<th>Name</th>
+							<th>Version</th>
+							<th>Serial Key</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+							foreach( $AssignedSoftware as $software ){
+								print "<tr>";
+								print "<td>".$software['SoftwareDeveloper']."</td>";
+								print "<td>".$software['SoftwareName']."</td>";
+								print "<td>".$software['Version']."</td>";
+								print "<td>".$software['SerialKey']."</td>";
 								print "</tr>";
 							}
 						?>
