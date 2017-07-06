@@ -184,6 +184,7 @@ if( isset($_POST['UpdateMobile']) ) {
 	$PurchaseDate = $_POST['PurchaseDate'];
 	$PurchasePrice = $_POST['PurchasePrice'];
 	$Status = $_POST['Status'];
+	$AssignedTo = $_POST['AssignedToID'];
 	
 	if(trim($_POST['Carrier']) !== ""){
     	$Carrier = $_POST['Carrier'];
@@ -191,19 +192,16 @@ if( isset($_POST['UpdateMobile']) ) {
 	}
 	
 	if( isset($AssignedTo) ){
-		if( is_numeric($AssignedTo) ){
-			$Status = "Assigned";
-		}elseif( $AssignedTo == "Open" ){
-			if( $Status == "Assigned" ){
-				$Status = "Available";
-				}
-			}
 		$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
+	}
+	
+	if( isset($Status) ){
+		$db->exec("UPDATE OR REPLACE mobile SET Status = '$Status' WHERE ID = '$ID'");
 	}
 	
 	
 	
-	$db->exec("UPDATE OR REPLACE mobile SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', IMEI = '$IMEI', ICCID = '$ICCID', PhoneNumber = '$PhoneNumber', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Status = '$Status' WHERE ID = '$ID'");
+	$db->exec("UPDATE OR REPLACE mobile SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', IMEI = '$IMEI', ICCID = '$ICCID', PhoneNumber = '$PhoneNumber', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice' WHERE ID = '$ID'");
 	
 	header("Location: ../../index.php?page=hardware/allmobile");
 	$db = NULL;
@@ -269,18 +267,15 @@ if( isset($_POST['UpdateComputer']) ) {
 	$Notes = $_POST['Notes'];
 	
 	if( isset($AssignedTo) ){
-		if( is_numeric($AssignedTo) ){
-			$Status = "Assigned";
-		}elseif( $AssignedTo == "Open" ){
-			if( $Status == "Assigned" ){
-				$Status = "Available";
-				}
-			}
 		$db->exec("UPDATE OR REPLACE computers SET AssignedTo = '$AssignedTo' WHERE ID = '$ID'");
+	}
+	
+	if( isset($Status) ){
+		$db->exec("UPDATE OR REPLACE computers SET Status = '$Status' WHERE ID = '$ID'");
 	}
 		
 	
-	$db->exec("UPDATE OR REPLACE computers SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', EthernetMAC = '$EthernetMAC', WiFiMAC = '$WiFiMAC', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Status = '$Status', Notes = '$Notes' WHERE ID = '$ID'");
+	$db->exec("UPDATE OR REPLACE computers SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', EthernetMAC = '$EthernetMAC', WiFiMAC = '$WiFiMAC', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Notes = '$Notes' WHERE ID = '$ID'");
 	
 	header("Location: ../../index.php?page=hardware/allcomputers");
 	$db = NULL;

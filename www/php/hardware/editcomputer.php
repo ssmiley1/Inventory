@@ -153,6 +153,7 @@
             		print "<option selected value='".$Status."'>".$Status."</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
+            		print "<option value='Assigned'>Assigned</option>";
             		print "<option value='On Hold'>On Hold</option>";
             		print "<option value='Damaged'>Damaged</option>";
             		print "<option value='To Recycle'>To Recycle</option>";
@@ -162,6 +163,7 @@
             		print "<option selected value='Available'>Choose Status...</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
+            		print "<option value='Assigned'>Assigned</option>";
             		print "<option value='On Hold'>On Hold</option>";
             		print "<option value='Damaged'>Damaged</option>";
             		print "<option value='To Recycle'>To Recycle</option>";

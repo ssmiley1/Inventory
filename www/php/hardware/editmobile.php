@@ -5,6 +5,12 @@
 	$MobileIDToEdit = $_GET['ID'];
 	$MobileToEdit = $db->query('SELECT * FROM mobile WHERE ID = '.$MobileIDToEdit);
 	
+	$FieldInfo = $db->query('SELECT ID, FieldType, FieldNumber FROM field ORDER BY FieldNumber ASC');
+	$AllField = $FieldInfo->fetchall(PDO::FETCH_ASSOC);
+	
+	$UserInfo = $db->query('SELECT ID, FirstName, LastName FROM users ORDER BY FirstName ASC');
+	$AllUsers = $UserInfo->fetchall(PDO::FETCH_ASSOC);
+	
 	foreach($MobileToEdit as $row)
 	{
 		$ID = $row['ID'];
@@ -132,6 +138,7 @@
             		print "<option selected disabled>Choose Status...</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
+            		print "<option value='Assigned'>Assigned</option>";
             		print "<option value='Locked'>Locked</option>";
             		print "<option value='Suspended'>Suspended</option>";
             		print "<option value='Damaged'>Damaged</option>";
@@ -141,6 +148,7 @@
             		print "<option selected disabled value='".$Status."'>".$Status."</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
+            		print "<option value='Assigned'>Assigned</option>";
             		print "<option value='Locked'>Locked</option>";
             		print "<option value='Suspended'>Suspended</option>";
             		print "<option value='Damaged'>Damaged</option>";
