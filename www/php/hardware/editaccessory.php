@@ -135,21 +135,23 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Status</label>
 			<div class="col-xs-5">
-				<?php
-				if ($Status == '' ){
-					print "<select class='form-control' name='Status' id='Status'>";
-            		print "<option selected disabled>Choose Status...</option>";
+			<?php
+				if( (isset($Status)) and ($Status !== NULL) and ($Status !== '') ){
+					print "<select select class='form-control' name='Status' id='Status'>";
+            		print "<option selected value='".$Status."'>".$Status."</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
+            		print "<option value='Assigned'>Assigned</option>";
             		print "<option value='Locked'>Locked</option>";
             		print "<option value='Suspended'>Suspended</option>";
             		print "<option value='Damaged'>Damaged</option>";
             		print "</select>";
 				} else {
-					print "<select select class='form-control' name='Status' id='Status'>";
-            		print "<option selected disabled>".$Status."</option>";
+					print "<select select class='form-control' name='Status' id='Status' required>";
+            		print "<option selected disabled>Choose Status...</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
+            		print "<option value='Assigned'>Assigned</option>";
             		print "<option value='Locked'>Locked</option>";
             		print "<option value='Suspended'>Suspended</option>";
             		print "<option value='Damaged'>Damaged</option>";
@@ -203,6 +205,9 @@
   		},
   		SerialNumber: {
   			required: true,
+  		},
+  		Status: {
+  			required: true,
   		}
   	},
   	messages: {
@@ -219,6 +224,9 @@
   		},
   		SerialNumber: {
   			required: "Serial Number required.",
+  		},
+  		Status: {
+  			required: "Status required.",
   		}
   	}
   });

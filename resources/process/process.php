@@ -184,6 +184,7 @@ if( isset($_POST['UpdateMobile']) ) {
 	$PurchaseDate = $_POST['PurchaseDate'];
 	$PurchasePrice = $_POST['PurchasePrice'];
 	$Status = $_POST['Status'];
+	$Notes = $_POST['Notes'];
 	$AssignedTo = $_POST['AssignedToID'];
 	
 	if(trim($_POST['Carrier']) !== ""){
@@ -201,7 +202,7 @@ if( isset($_POST['UpdateMobile']) ) {
 	
 	
 	
-	$db->exec("UPDATE OR REPLACE mobile SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', IMEI = '$IMEI', ICCID = '$ICCID', PhoneNumber = '$PhoneNumber', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice' WHERE ID = '$ID'");
+	$db->exec("UPDATE OR REPLACE mobile SET Make = '$Make', Model = '$Model', SerialNumber = '$SerialNumber', AssetTag = '$AssetTag', IMEI = '$IMEI', ICCID = '$ICCID', PhoneNumber = '$PhoneNumber', PurchaseDate = '$PurchaseDate', PurchasePrice = '$PurchasePrice', Notes = '$Notes' WHERE ID = '$ID'");
 	
 	header("Location: ../../index.php?page=hardware/allmobile");
 	$db = NULL;

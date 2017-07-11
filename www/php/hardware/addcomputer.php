@@ -42,8 +42,8 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label" for="Type">Type</label>
 			<div class="col-xs-5">
-				<select class="form-control">
-				<option selected>Choose Type...</option>
+				<select class="form-control" required>
+				<option selected disabled>Choose Type...</option>
 				<option>Desktop</option>
 				<option>Laptop</option>
 				</select>
@@ -175,6 +175,9 @@
   				}
   			}
   		},
+  		Type: {
+  			required: true,
+  		},
   		Status: {
   			required: true,
   		}
@@ -195,6 +198,9 @@
   		SerialNumber: {
   			required: "Serial Number required.",
   			remote: "Already exists."
+  		},
+  		Type: {
+  			required: "Type required."
   		},
   		Status: {
   			required: "Status required."

@@ -55,10 +55,6 @@
 		}
 	}
 	
-	if( $AssignedTo !== "Open" ){
-		$Status = "Assigned";
-	}
-	
 ?>
 
 <link href="/www/css/bootstrap.min.css" rel="stylesheet">
@@ -94,7 +90,7 @@
 			<label class="col-xs-3 control-label" for="Type">Type</label>
 			<div class="col-xs-5">
 				<select class="form-control" name="Type">
-					<option selected disabled><?php echo $Type; ?></option>
+					<option selected><?php echo $Type; ?></option>
 					<option value="Desktop">Desktop</option>
 					<option value="Laptop">Laptop</option>
 				</select>
@@ -147,7 +143,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Status</label>
 			<div class="col-xs-5">
-				<?php
+			<?php
 				if( (isset($Status)) and ($Status !== NULL) and ($Status !== '') ){
 					print "<select select class='form-control' name='Status' id='Status'>";
             		print "<option selected value='".$Status."'>".$Status."</option>";
@@ -159,8 +155,8 @@
             		print "<option value='To Recycle'>To Recycle</option>";
             		print "</select>";
 				} else {
-					print "<select select class='form-control' name='Status' id='Status'>";
-            		print "<option selected value='Available'>Choose Status...</option>";
+					print "<select select class='form-control' name='Status' id='Status' required>";
+            		print "<option selected disabled>Choose Status...</option>";
             		print "<option value='New in box'>New in box</option>";
             		print "<option value='Available'>Available</option>";
             		print "<option value='Assigned'>Assigned</option>";
@@ -217,6 +213,9 @@
   		},
   		SerialNumber: {
   			required: true,
+  		},
+  		Status: {
+  			required: true,
   		}
   	},
   	messages: {
@@ -233,6 +232,9 @@
   		},
   		SerialNumber: {
   			required: "Serial Number required.",
+  		},
+  		Status: {
+  			required: "Status required.",
   		}
   	}
   });
