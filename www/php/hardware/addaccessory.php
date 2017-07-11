@@ -90,9 +90,10 @@
 			<label class="col-xs-3 control-label">Status</label>
 			<div class="col-xs-5">
 				<select class="form-control" id="Status" name="Status" required>
-				<option selected>Available</option>
+				<option selected disabled>Choose Status...</option>
 				<option value="New in box">New in box</option>
 				<option value="Assinged">Assigned</option>
+				<option value="Available">Available</option>
 				<option value="On hold">On hold</option>
 				<option value="Damaged">Damaged</option>
 				<option value="To recycle">To recycle</option>
