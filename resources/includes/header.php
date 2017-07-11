@@ -90,6 +90,13 @@
                 <li><a href="index.php?page=/reports/xeroxreport" id="xeroxreport">Xerox Report</a></li>
               </ul>
             </li>
+            <li class="dropdown pull-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Admin <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">Admin Tools</li>
+                <li><a href="index.php?page=/admin/fixnullstatus" id="nullassigned">Fix Null Status</a></li>
+              </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
