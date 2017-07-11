@@ -7,22 +7,30 @@
 	$UserID = $_GET['ID'];
 	$FieldUserID = "field".$UserID;
 	
-	$ShippingInfo = $db->query("SELECT FirstName, LastName, FieldType, FieldNumber, StreetAddress, City, State, ZipCode FROM field WHERE ID = '$UserID'");
+	$ShippingInfo = $db->query("SELECT FirstName, LastName, FieldType, FieldNumber, CellPhoneNumber, StreetAddress, City, State, ZipCode FROM field WHERE ID = '$UserID'");
 	$AssignedPhoneNumber = $db->query("SELECT PhoneNumber FROM mobile WHERE AssignedTo = '$FieldUserID'");
 
-	foreach( $ShippingInfo as $name ){
-		$FullFieldName = $name['FieldType'].$name['FieldNumber'];
-		$FirstName = $name['FirstName'];
-		$LastName = $name['LastName'];
-		$StreetAddress = $name['StreetAddress'];
-		$City = $name['City'];
-		$State = $name['State'];
-		$ZipCode = $name['ZipCode'];
+	foreach( $ShippingInfo as $info ){
+		$FullFieldName = $info['FieldType'].$info['FieldNumber'];
+		$FirstName = $info['FirstName'];
+		$LastName = $info['LastName'];
+		$StreetAddress = $info['StreetAddress'];
+		$City = $info['City'];
+		$State = $info['State'];
+		$ZipCode = $info['ZipCode'];
+		$CellPhoneNumberInFieldTable = $info['CellPhoneNumber'];
 	}
 	
+	# Make the cell phone number the phone number of the device that is assigned to them if exists
 	foreach( $AssignedPhoneNumber as $number ){
 		$CellPhoneNumber = $number['PhoneNumber'];
 	}
+	
+	# Else use the cell phone number that is in the field user table
+	if( $CellPhoneNumber == NULL ){
+		$CellPhoneNumber = $CellPhoneNumberInFieldTable;
+	}
+	
 ?>
 
 <div class="modal-header">

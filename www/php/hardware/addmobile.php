@@ -108,7 +108,7 @@
 		<div class="form-group">
 			<label class="col-xs-3 control-label">Status</label>
 			<div class="col-xs-5">
-				<select class="form-control" id="Status" name="Status">
+				<select class="form-control" id="Status" name="Status" required>
 				<option selected>Available</option>
 				<option value="New in box">New in box</option>
 				<option value="Assinged">Assigned</option>
@@ -191,6 +191,9 @@
   					Table: "mobile"
   				}
   			}
+  		},
+  		Status: {
+  			required: true,
   		}
   	},
   	messages: {
@@ -208,6 +211,9 @@
   		SerialNumber: {
   			required: "Serial number required.",
   			remote: "Serial number already exists."
+  		},
+  		Status: {
+  			required: "Status required."
   		}
   	}
   });
