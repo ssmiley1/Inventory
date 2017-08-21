@@ -4,6 +4,7 @@ define("ROOT", __DIR__ ."/Inventory/");
 define("DB", __DIR__ ."/db/");
 define("INCLUDES", __DIR__ ."/resources/includes/");
 define("PHP", __DIR__ ."/www/php/");
+define("MAILER", __DIR__ ."/resources/includes/PHPMailer/");
 
 
 

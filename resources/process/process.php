@@ -16,10 +16,10 @@ if( isset($_POST['DeleteUser']) ) {
 	$UserToDelete = $_POST['DeleteUser'];
 	$db->exec("DELETE FROM users WHERE ID = '$UserToDelete'");
 	
-	$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = 'Open' AND SET Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
-	$db->exec("UPDATE OR REPLACE computers SET AssignedTo = 'Open' AND SET Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
-	$db->exec("UPDATE OR REPLACE accessories SET AssignedTo = 'Open' AND SET Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
-	$db->exec("UPDATE OR REPLACE software SET AssignedTo = 'Open' AND SET Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
+	$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = 'Open', Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
+	$db->exec("UPDATE OR REPLACE computers SET AssignedTo = 'Open', Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
+	$db->exec("UPDATE OR REPLACE accessories SET AssignedTo = 'Open', Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
+	$db->exec("UPDATE OR REPLACE software SET AssignedTo = 'Open', Status = 'Available' WHERE AssignedTo = '$UserToDelete'");
 
 	header("Location: ../../index.php?page=users/allusershe");
 	$db = NULL;
@@ -70,8 +70,8 @@ if( isset($_POST['DeleteField']) ) {
 	$FieldUserToDelete = $_POST['DeleteField'];
 	$db->exec("DELETE FROM field WHERE ID = '$FieldUserToDelete'");
 	
-	$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = 'Open' WHERE AssignedTo = 'field$FieldUserToDelete'");
-	$db->exec("UPDATE OR REPLACE computers SET AssignedTo = 'Open' WHERE AssignedTo = 'field$FieldUserToDelete'");
+	$db->exec("UPDATE OR REPLACE mobile SET AssignedTo = 'Open', Status = 'Available' WHERE AssignedTo = 'field$FieldUserToDelete'");
+	$db->exec("UPDATE OR REPLACE computers SET AssignedTo = 'Open', Status = 'Available' WHERE AssignedTo = 'field$FieldUserToDelete'");
 
 	header("Location: ../../index.php?page=users/allusersfield");
 	$db = NULL;
