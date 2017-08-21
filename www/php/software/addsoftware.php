@@ -115,7 +115,7 @@
 		<div class="form-group">
 			<div class="col-xs-5 col-xs-offset-3">
 				<button type="submit" class="btn btn-danger pull-left" name="DeleteSoftware">Delete Item</button>
-				<button type="submit" class="btn btn-success pull-right" name="UpdateSoftware">Save</button>
+				<button type="submit" class="btn btn-success pull-right" name="AddSoftware">Save</button>
 			</div>
 		</div>
 	</form>

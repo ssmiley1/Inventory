@@ -424,7 +424,7 @@ if( isset($_POST['DeleteSoftware']) ) {
 	$SoftwareToDelete = $_POST['DeleteSoftware'];
 	$db->exec("Delete FROM software WHERE ID = '$SoftwareToDelete'");
 	
-	header("Location: ../index.php");
+	header("Location: ../../index.php?page=software/allsoftware");
 	$db = NULL;
 }
 
